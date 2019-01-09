@@ -1,0 +1,28 @@
+/* pages/choicewords/choicewords.wxss */
+
+page {
+  background-color: rgb(243, 241, 241);
+}
+
+.choicecontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.wordscontainer {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 4px 1px 1px #ccc;
+  margin: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.wordscontainer text {
+  font-size: 32rpx;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(124, 124, 124);
+}

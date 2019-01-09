@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "贺卡集",
+  "usingComponents": {
+    "mp-swipe-card": "../../components/mp-swipe-card/index",
+    "card-item": "../components/card-item/index"
+  }
+}

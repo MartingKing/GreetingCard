@@ -1,0 +1,27 @@
+<!--cardhome.wxml-->
+<view class="swipe-card-container">
+  <view class="placeholder-0"></view>
+  <view class="placeholder-1"></view>
+  <view class="placeholder-2"></view>
+  <mp-swipe-card bind:click="handleClickCard" push-list="{{coverlist}}" bind:swipeout="handleSwipeOut" generic:mp-swipe-card-item="card-item">
+    <view>{{coverlist.zanNums}}</view>
+  </mp-swipe-card>
+</view>
+<view class='home-bottom-layout'>
+  <view bindtap='comment'>
+    <button plain='true' style='border:none;' class='sharebtn'>
+      <image src='../../image/icon_comment.png' mode='widthFix'></image>
+    </button>
+  </view>
+  <view style='display: flex;flex-direction: column;'>
+    <!-- <image class='bottom-image-center' src='../../image/icon_like.png' bindtap='like' wx:if="{{collected}}"></image> -->
+    <!-- <image wx:else class='bottom-image-center' src='../../image/icon_like_gray.png' bindtap='like'></image> -->
+    <!-- 获取当前卡片的id，然后传入数组获取点赞数 -->
+    <!-- <text class='bottom-like-num' >{{currentindex}}{{coverlist[currentindex].zanNums}}</text> -->
+  </view>
+  <view>
+    <button plain='true' open-type="share" style='border:none;' class='sharebtn'>
+      <image src='../../image/icon_share.png' mode='widthFix'></image>
+    </button>
+  </view>
+</view>

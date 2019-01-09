@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "贺卡编辑",
+  "usingComponents": {
+    "my-component-dialog": "../../components/myDialogComponent/myDialogComponent"
+  }
+}

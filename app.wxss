@@ -1,0 +1,32 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.toptips {
+  background: rgb(174, 235, 77);
+  font-size: 30rpx;
+  padding-left: 130px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 25px;
+}
+
+.dividerline {
+  background: #d2d2d2;
+  height: 1rpx;
+  width: 100%;
+}

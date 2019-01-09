@@ -1,0 +1,15 @@
+<!--cardme.wxml-->
+<view class='clayout' wx:for='commentlist' wx:key wx:for-item='orderitem'>
+  <view class='commentlayout'>
+    <image class='avatar' src='{{userInfo.avatarUrl}}' />
+    <view class='commenttextlayout'>
+      <text class='nickname'>{{userInfo.nickName}}</text>
+      <text class='time'>{commentlist.comment}</text>
+    </view>
+  </view>
+  <text class='commentcontent'>{commentlist.comment.commentContent}</text>
+</view>
+<view class='commentcontainer'>
+  <input placeholder='输入内容' bindtap='commentinput' value="{{inputValue}}"></input>
+  <text bindtap='submit'>提交</text>
+</view>

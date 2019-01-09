@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/cardhome/cardhome",
+    "pages/cardme/cardme",
+    "pages/madecard/madecard",
+    "pages/comment/comment",
+    "pages/choicewords/choicewords"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#d81e06",
+    "borderStyle": "#000",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/cardhome/cardhome",
+        "iconPath": "image/icon_card_nor.png",
+        "selectedIconPath": "image/icon_card_pres.png",
+        "text": "贺卡"
+      },
+      {
+        "pagePath": "pages/cardme/cardme",
+        "iconPath": "image/icon_me_nor.png",
+        "selectedIconPath": "image/icon_me_pres.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

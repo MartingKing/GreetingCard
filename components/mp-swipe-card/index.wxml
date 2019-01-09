@@ -1,0 +1,29 @@
+<!-- 组件渲染模板 -->
+<template name="msgItem">
+  <view bind:click="handleClick">
+    <text> {{id}}: {{id}} </text>
+    <text> Time: {{id}} </text>
+  </view>
+</template>
+
+<view 
+  id="mp-swipe-card"
+  class="mp-swipe-card-container"
+  bind:touchmove="handleTouchMove"
+  bind:touchstart="handleTouchStart"
+  bind:touchcancel="handleTouchEnd"
+  bind:touchend="handleTouchEnd">
+
+  <view 
+    wx:for="{{list}}" 
+    wx:for-index="idx" 
+    wx:key="item.id"
+    wx:if="{{list.length - idx < 4}}"
+    class="mp-swipe-card-item {{list.length - 1 === idx ? 'top' : ''}}"
+    style="transform: translate3d({{list.length - 1 === idx ? position.x : 0 }}rpx, 0rpx, 0rpx);">
+
+    <mp-swipe-card-item item-data="{{item}}"></mp-swipe-card-item>
+  </view>
+</view>
+
+<view class="aaaa"></view>
