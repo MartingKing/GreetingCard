@@ -74,7 +74,32 @@ Page({
           console.log('登录信息:', res.data)
           console.log('userid;', res.data.data.userId)
           app.globalData.userid = res.data.data.userId
-          that.setData({})
+          wx.setStorage({
+            key: "userid",
+            data: res.data.data.userId,
+            success: function(res) {
+              console.log(res)
+            },
+            fail: function(res) {
+              console.log(res)
+            },
+            complete: function(res) {
+              console.log(res)
+            },
+          })
+          wx.setStorage({
+            key: "userInfo",
+            data: userInfo,
+            success: function (res) {
+              console.log(res)
+            },
+            fail: function (res) {
+              console.log(res)
+            },
+            complete: function (res) {
+              console.log(res)
+            },
+          })
         }
       })
   },

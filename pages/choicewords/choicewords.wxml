@@ -1,8 +1,8 @@
 <!--pages/choicewords/choicewords.wxml-->
-<navigator url="../madecard/madecard?id=1" wx:for='[1,2,3,4,5,6,7,8,9]' wx:key wx:for-item='orderitem'>
+<navigator url="../madecard/madecard?wishwords={{orderitem.wishContent}}" wx:for='{{wishlist}}' wx:key wx:for-item='orderitem'>
   <text hidden='{{showtips}}' class='toptips'>点击选择喜欢的祝福语</text>
 
   <view class='wordscontainer'>
-    <text>大范德萨范德萨飞快的拉伸荆防颗粒的撒借款方来的萨进口量发动机斯科拉复健科多啦撒就分了的卡萨{{item}}</text>
+    <text>{{orderitem.wishContent}}</text>
   </view>
 </navigator>

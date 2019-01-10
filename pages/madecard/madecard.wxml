@@ -4,7 +4,7 @@
   <image class='made-card-container-music' src='../../image/icon_music.png' id='music'></image>
   <text class='greeting-words' style='color:{{textcolor}}' bindtap='editgreetingworlds'>{{greetingwords}}</text>
   <!-- 自定义dialog -->
-  <my-component-dialog bind:determineevent="onMyEvent" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" title-msg="{{titleMsg}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" input-place-halder="{{inputPlaceHolder}}" />
+  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" title-msg="{{titleMsg}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" input-place-halder="{{inputPlaceHolder}}" />
 
   <button open-type="getUserInfo" bindtap='scancard'>预览</button>
 </view>

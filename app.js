@@ -1,18 +1,47 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      
+  onLaunch: function() {
+    var that = this
+    var userinfo = null
+    wx.getStorage({
+      key: 'userid',
+      success: function(res) {
+        that.globalData.userid = res.data
+      },
+      fail: function(res) {
+        console.log(res)
+      },
+      complete: function(res) {
+        console.log(res)
       }
     })
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {
+        userinfo = res.data
+        that.globalData.userInfo = userinfo
+      },
+      fail: function(res) {
+        console.log(res)
+      },
+      complete: function(res) {
+        console.log(res)
+      }
+    })
+    // console.log('aaaaa', userinfo)
+    // if (userinfo == null) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
+    //     success: function(res) {
+    //       if (res.confirm) {
+    //         wx.switchTab({
+    //           url: '../cardme/cardme',
+    //         })
+    //       }
+    //     }
+    //   })
+    // }
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -33,9 +62,35 @@ App({
         }
       }
     })
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        var code = res.code
+        //todo 登录接口获取sessionkey 和openid等
+        var that = this
+        var userInfo = that.globalData.userInfo
+        wx.showLoading({
+            title: '加载中...',
+            icon: 'loading'
+          }),
+          wx.request({
+            url: 'https://www.lizubing.com/article/cover/login',
+            method: 'POST',
+            data: {
+              code: code,
+              userInfo: userInfo,
+            },
+            success: function(res) {
+              console.log('登录信息', res)
+              wx.hideLoading()
+            }
+          })
+      }
+    })
   },
   globalData: {
     userInfo: null,
-    userid:''
+    userid: ''
   }
 })

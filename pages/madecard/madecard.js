@@ -7,8 +7,11 @@ const backgroundurl = [
   'https://www.lizubing.com/upload/img/spring.png',
   'https://www.lizubing.com/upload/img/love.png',
   'https://www.lizubing.com/upload/img/new_year.png',
-  'https://www.lizubing.com/upload/img/new_year_eve.png']
+  'https://www.lizubing.com/upload/img/new_year_eve.png'
+]
 const mycolor = ['#000', '#ffef7b', '#f8193e', '#ff9293', '#ffef7b']
+
+var coverid = ''
 Page({
   data: {
     userInfo: {},
@@ -45,14 +48,22 @@ Page({
       greetingwords: greetings,
     })
   },
+  selectgreetingwords: function(e) {
+    console.log('dialog click:', e)
+    wx.navigateTo({
+      url: '../choicewords/choicewords?coverid=' + coverid,
+    })
+  },
   onLoad: function(params) {
-    var id = params.id
+    //快速选择界面返回的寄语
+    console.log('jiyu:', params.wishwords)
+    coverid = params.id
     this.hidetips()
-    console.log('params--', id)
-    if (backgroundurl[id] != null) {
+    console.log('coverid--', coverid)
+    if (backgroundurl[coverid] != null) {
       this.setData({
-        backgrounds: backgroundurl[id],
-        textcolor: mycolor[id]
+        backgrounds: backgroundurl[coverid],
+        textcolor: mycolor[coverid]
       })
     }
   },

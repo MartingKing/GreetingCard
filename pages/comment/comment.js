@@ -2,43 +2,66 @@
 const util = require('../../utils/util.js')
 //获取应用实例
 const app = getApp()
-var commentcontent = ''
-var coverid = ''
 Page({
   data: {
     userInfo: {},
     commentlist: [],
-    inputValue:''
+    inputValue: null,
+    id: '',
+    usercomment:null,
   },
   submit: function() {
     var that = this
     wx.showLoading({
       title: '提交中',
     })
+    console.log('userid', app.globalData.userid)
+    console.log('coverid', this.data.id)
+    console.log('comment', this.data.usercomment)
     wx.request({
       url: 'https://www.lizubing.com/article/comment/add',
-      data: {
-        comment: commentcontent,
+      method: 'POST',
+      data:{
+        comment: that.data.usercomment,
         userId: app.globalData.userid,
-        coverId: coverid
+        coverId: that.data.id
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
       },
       success(res) {
         console.log('submit comment:', res)
         //增加评论后刷新数据
-        that.onLoad()
+        that.getComment()
         wx.hideLoading()
         that.setData({
-          inputValue:''
+          inputValue: ''
         })
       }
     })
   },
   commentinput: function(e) {
-    commentcontent = e.detail.value
+    var commentcontent = e.detail.value
+    this.setData({
+      usercomment: commentcontent
+    })
   },
   onLoad: function(params) {
-    coverid = params.coverid
-    console.log('coverid--', coverid)
+    var param = ''
+    if (params != null) {
+      param = params.coverid
+    }
+    console.log('coverid--', param)
+    var that = this
+    that.setData({
+      id: param,
+    })
+    that.getComment()
+    that.setData({
+      userInfo: app.globalData.userInfo,
+    })
+  },
+  getComment() {
     var that = this
     wx.showLoading({
       title: '请求中',
@@ -46,7 +69,7 @@ Page({
     wx.request({
       url: 'https://www.lizubing.com/article/comment/list',
       data: {
-        coverId: coverid,
+        coverId: that.data.id,
         pageNo: '1',
         pageSize: '20'
       },
@@ -54,17 +77,12 @@ Page({
         wx.hideLoading()
         var dataset = res.data.data.list
         that.setData({
-          commentlist: dataset
+          commentlist: dataset,
         })
         console.log('data--', res.data)
       }
     })
-
-    this.setData({
-      userInfo: app.globalData.userInfo,
-    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
