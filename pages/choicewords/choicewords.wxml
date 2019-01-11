@@ -1,8 +1,8 @@
 <!--pages/choicewords/choicewords.wxml-->
-<navigator url="../madecard/madecard?wishwords={{orderitem.wishContent}}" wx:for='{{wishlist}}' wx:key wx:for-item='orderitem'>
+<view bindtap='gotolastpage' wx:for='{{wishlist}}' wx:key wx:for-item='orderitem'>
   <text hidden='{{showtips}}' class='toptips'>点击选择喜欢的祝福语</text>
-
+  <!-- url="../madecard/madecard?wishwords={{orderitem.wishContent}}" -->
   <view class='wordscontainer'>
     <text>{{orderitem.wishContent}}</text>
   </view>
-</navigator>
+</view>

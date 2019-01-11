@@ -15,16 +15,18 @@ var coverid = ''
 Page({
   data: {
     userInfo: {},
-    backgrounds: 'https://www.lizubing.com/upload/img/love.png',
-    textcolor: '#ffef7b',
+    backgrounds: '',
+    textcolor: '#000',
     greetingwords: "愿你过一个开心的春节!\r\n愿世界充满详和,\r\n我以最真诚的心,\r\n祝愿您拥有幸福的一年! ",
     showtips: false,
     isHidden: true,
     inputHidden: false,
     cancleBtn: false,
-    inputPlaceHolder: '请输入祝福语（90字符以内，为了美观，请换行断句）'
+    inputPlaceHolder: '请输入祝福语（90字符以内）',
   },
-  editgreetingworlds: function() {
+  editgreetingworlds: function(e) {
+    app.globalData.editcontent = e._relatedInfo.anchorTargetText
+    console.log('编辑内容', e._relatedInfo.anchorTargetText)
     var that = this;
     that.setData({
       isHidden: false,
@@ -41,11 +43,9 @@ Page({
   onMyEvent: function(e) {
     var that = this;
     var content = e.detail;
-    var greetings = content.replace(',', '\\r\\n');
-    console.log("e.detail :", content)
     that.setData({
       isHidden: true,
-      greetingwords: greetings,
+      greetingwords: content,
     })
   },
   selectgreetingwords: function(e) {
@@ -56,16 +56,17 @@ Page({
   },
   onLoad: function(params) {
     //快速选择界面返回的寄语
-    console.log('jiyu:', params.wishwords)
+    var that = this
     coverid = params.id
-    this.hidetips()
+    that.hidetips()
+    that.getHeight()
     console.log('coverid--', coverid)
-    if (backgroundurl[coverid] != null) {
-      this.setData({
-        backgrounds: backgroundurl[coverid],
-        textcolor: mycolor[coverid]
-      })
-    }
+    // if (backgroundurl[coverid] != null) {
+    //   that.setData({
+    //     backgrounds: backgroundurl[coverid],
+    //     textcolor: mycolor[coverid],
+    //   })
+    // }
   },
   /**
    * 用户点击右上角分享
@@ -84,9 +85,53 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
-
+  //文字滚动动画
+  util: function(obj) {
+    var continueTime = (parseInt(obj.list / obj.container) + 1) * 6000;
+    var setIntervalTime = 50 + continueTime;
+    console.log('continueTime', continueTime);
+    var animation = wx.createAnimation({
+      duration: 200, //动画时长
+      timingFunction: "linear", //线性
+      delay: 0 //0则不延迟
+    });
+    this.animation = animation;
+    animation.translateY(obj.container).step({
+      duration: 50,
+      timingFunction: 'step-start'
+    }).translateY(-obj.list).step({
+      duration: 10000
+    });
+    this.setData({
+      animationData: animation.export()
+    })
+    setInterval(() => {
+      animation.translateY(obj.container).step({
+        duration: 50,
+        timingFunction: 'step-start'
+      }).translateY(-obj.list).step({
+        duration: 10000
+      });
+      this.setData({
+        animationData: animation.export()
+      })
+    }, 10000)
+  },
+  //文字滚动动画
+  getHeight() {
+    var obj = new Object();
+    //创建节点选择器
+    var query = wx.createSelectorQuery();
+    query.select('.textanimationcontainer').boundingClientRect()
+    query.select('.list').boundingClientRect()
+    query.exec((res) => {
+      obj.container = res[0].height; // 框的height
+      obj.list = res[1].height; // list的height
+      this.util(obj);
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

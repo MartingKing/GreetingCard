@@ -70,6 +70,8 @@ App({
         //todo 登录接口获取sessionkey 和openid等
         var that = this
         var userInfo = that.globalData.userInfo
+        console.log('code', code)
+        console.log('userInfo', userInfo)
         wx.showLoading({
             title: '加载中...',
             icon: 'loading'
@@ -91,6 +93,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    userid: ''
+    userid: '',
+    editcontent:null
   }
 })

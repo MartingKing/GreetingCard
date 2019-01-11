@@ -31,5 +31,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "enablePullDownRefresh": true
 }

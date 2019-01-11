@@ -4,7 +4,7 @@
   <view class="placeholder-1"></view>
   <view class="placeholder-2"></view>
   <mp-swipe-card bind:click="handleClickCard" push-list="{{coverlist}}" bind:swipeout="handleSwipeOut" generic:mp-swipe-card-item="card-item">
-    <view>{{coverlist.zanNums}}</view>
+    
   </mp-swipe-card>
 </view>
 <view class='home-bottom-layout'>

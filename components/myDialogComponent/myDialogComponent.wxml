@@ -6,9 +6,9 @@
 
       <text class='titleMsg'>{{titleMsg}}</text>
 
-      <textarea class="input_base" maxlength='88' hidden='{{inputHidden}}' bindinput="bindKeyInput" value="{{inputValue}}" auto-focus='autofocus' placeholder='{{inputPlaceHalder}}' />
+      <textarea class="input_base" maxlength='90' hidden='{{inputHidden}}' bindinput="bindKeyInput" value="{{inputValue}}" auto-focus='autofocus' placeholder='{{inputPlaceHalder}}' />
       <text bindtap='choicewords' class='quick-text'>点击快速选择祝福语</text> 
-    </view>
+    </view> 
     <view class='sureQuery'>
       <view bindtap='cancleBtn' class='btn' hidden='{{cancleBtn}}'>取消</view>
       <view bindtap='determineBtn' class='btnSure'>确定</view>

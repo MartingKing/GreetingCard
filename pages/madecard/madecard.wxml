@@ -2,9 +2,17 @@
 <view class='made-card-container' style="background-image:url('{{backgrounds}}');background-size:100% 100%;">
   <text hidden='{{showtips}}' class='toptips'>点击文字编辑祝福语</text>
   <image class='made-card-container-music' src='../../image/icon_music.png' id='music'></image>
-  <text class='greeting-words' style='color:{{textcolor}}' bindtap='editgreetingworlds'>{{greetingwords}}</text>
+
+  <!-- <text class='greeting-words' style='color:{{textcolor}}' bindtap='editgreetingworlds'>{{greetingwords}}</text> -->
+
+  <view class="textanimationcontainer" bindtap='editgreetingworlds'>
+    <view class='list' animation="{{animationData}}">
+      <text class='greeting-words' style='color:{{textcolor}}'>{{greetingwords}}</text>
+    </view>
+  </view>
   <!-- 自定义dialog -->
-  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" title-msg="{{titleMsg}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" input-place-halder="{{inputPlaceHolder}}" />
+  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" input-place-halder="{{inputPlaceHolder}}"
+  />
 
   <button open-type="getUserInfo" bindtap='scancard'>预览</button>
 </view>

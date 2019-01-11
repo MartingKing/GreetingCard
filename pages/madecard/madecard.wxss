@@ -25,11 +25,7 @@ page {
   font-style: initial;
   width: 220px;
   align-self: center;
-  position: fixed;
-  bottom: 0;
-  display: flex;
   font-family: cursive;
-  margin-bottom: 80px;
   color: #fff;
   line-height: 30px;
 }
@@ -47,3 +43,14 @@ page {
   bottom: 0;
 }
 
+.textanimationcontainer {
+  width: 220px;
+  height: 300rpx;
+  align-self: center;
+  position: fixed;
+  padding-left: 10px;
+  bottom: 0;
+  display: flex;
+  margin-bottom: 90px;
+  overflow: hidden;
+}

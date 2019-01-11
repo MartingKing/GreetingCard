@@ -41,13 +41,11 @@ Component({
       value: true,
     },
   },
-
-
+ 
   data: {
     // 这里是一些组件内部数据
-    inputValue: "",
+    inputValue: '',
     onCancleClick: false,
-
   },
 
   methods: {
@@ -58,8 +56,8 @@ Component({
       })
     },
 
-    choicewords:function(e){
-      this.triggerEvent('choicewords',e)
+    choicewords: function(e) {
+      this.triggerEvent('choicewords', e)
       this.setData({
         dialogHidden: true,
       })

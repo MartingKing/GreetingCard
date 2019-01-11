@@ -2,26 +2,29 @@
 const util = require('../../utils/util.js')
 //获取应用实例
 const app = getApp()
+
+var loadmoredata = []
+
 Page({
   data: {
     userInfo: {},
     commentlist: [],
     inputValue: null,
     id: '',
-    usercomment:null,
+    usercomment: null,
+    offset: 1,
+    totalsize: 0,
   },
   submit: function() {
     var that = this
     wx.showLoading({
       title: '提交中',
     })
-    console.log('userid', app.globalData.userid)
-    console.log('coverid', this.data.id)
-    console.log('comment', this.data.usercomment)
+
     wx.request({
       url: 'https://www.lizubing.com/article/comment/add',
       method: 'POST',
-      data:{
+      data: {
         comment: that.data.usercomment,
         userId: app.globalData.userid,
         coverId: that.data.id
@@ -32,7 +35,7 @@ Page({
       success(res) {
         console.log('submit comment:', res)
         //增加评论后刷新数据
-        that.getComment()
+        that.getComment(false)
         wx.hideLoading()
         that.setData({
           inputValue: ''
@@ -47,6 +50,7 @@ Page({
     })
   },
   onLoad: function(params) {
+    loadmoredata = []
     var param = ''
     if (params != null) {
       param = params.coverid
@@ -56,28 +60,41 @@ Page({
     that.setData({
       id: param,
     })
-    that.getComment()
+    that.getComment(false)
     that.setData({
       userInfo: app.globalData.userInfo,
     })
   },
-  getComment() {
+  getComment(isloadmore) {
     var that = this
     wx.showLoading({
-      title: '请求中',
+      title: '玩命加载中',
     })
+
+    if (isloadmore) {
+      that.setData({
+        offset: that.data.offset + 1
+      })
+    }
     wx.request({
       url: 'https://www.lizubing.com/article/comment/list',
+      header: {
+        'content-type': 'application/text'
+      },
       data: {
         coverId: that.data.id,
-        pageNo: '1',
-        pageSize: '20'
+        pageNo: that.data.offset,
+        pageSize: '10'
       },
       success: function(res) {
         wx.hideLoading()
         var dataset = res.data.data.list
+        for (var i in dataset) {
+          loadmoredata.push(dataset[i])
+        }
         that.setData({
-          commentlist: dataset,
+          totalsize: res.data.data.total,
+          commentlist: loadmoredata,
         })
         console.log('data--', res.data)
       }
@@ -104,4 +121,18 @@ Page({
 
   },
 
+  onReachBottom: function() {
+    var that = this;
+    var dataLength = loadmoredata.length
+    var totalSize = that.data.totalsize
+    console.log('dataLength', dataLength, '\r\n', 'totalSize', totalSize)
+    console.log('loadmoredata', loadmoredata)
+    if(dataLength<totalSize){
+      that.getComment(true)
+    }else{
+      wx.showToast({
+        title: '到底了',
+      })
+    }
+  }
 })

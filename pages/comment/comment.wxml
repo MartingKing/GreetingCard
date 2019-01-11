@@ -1,9 +1,9 @@
 <!--cardme.wxml-->
 <view class='clayout' wx:for='{{commentlist}}' wx:key wx:for-item='orderitem'>
   <view class='commentlayout'>
-    <image class='avatar' src='{{userInfo.avatarUrl}}' />
+    <image class='avatar' src='{{orderitem.user.avatar}}' />
     <view class='commenttextlayout'>
-      <text class='nickname'>{{userInfo.nickName}}</text>
+      <text class='nickname'>{{orderitem.user.nickname}}</text>
       <text class='time'>{{orderitem.comment.commentTime}}</text>
     </view>
   </view>
