@@ -3,33 +3,31 @@ const util = require('../../utils/util.js')
 
 //获取应用实例
 const app = getApp()
-const backgroundurl = [
-  'https://www.lizubing.com/upload/img/spring.png',
-  'https://www.lizubing.com/upload/img/love.png',
-  'https://www.lizubing.com/upload/img/new_year.png',
-  'https://www.lizubing.com/upload/img/new_year_eve.png'
-]
-const mycolor = ['#000', '#ffef7b', '#f8193e', '#ff9293', '#ffef7b']
-
+const mywords = ['新年佳节到，拜年要赶早，好运跟你跑，吉祥围你绕，财源进腰包，心想事就成，春节齐欢笑，我的祝福如此早，请你一定要收到！',
+  '情人节快乐，预祝有情的你永远浪漫、热情的你永远青春、真情的你永远开心、纯情的你永远快乐、深情的你永远甜蜜、痴情的你永远幸福!']
 var coverid = ''
 Page({
   data: {
     userInfo: {},
     backgrounds: '',
     textcolor: '#000',
-    greetingwords: "愿你过一个开心的春节!\r\n愿世界充满详和,\r\n我以最真诚的心,\r\n祝愿您拥有幸福的一年! ",
+    greetingwords: '',
     showtips: false,
     isHidden: true,
     inputHidden: false,
     cancleBtn: false,
+    inputFocus: false,
+    inputMsg: '',
     inputPlaceHolder: '请输入祝福语（90字符以内）',
   },
+  //点击显示dialog
   editgreetingworlds: function(e) {
-    app.globalData.editcontent = e._relatedInfo.anchorTargetText
-    console.log('编辑内容', e._relatedInfo.anchorTargetText)
+    var content = e._relatedInfo.anchorTargetText
     var that = this;
     that.setData({
       isHidden: false,
+      inputMsg: content,
+      inputFocus: true,
       // inputPlaceHolder: "请输入想要发送的内容",
       inputHidden: false,
       // cancleBtn: true,
@@ -37,7 +35,9 @@ Page({
   },
 
   scancard() {
-    console.log('浏览')
+    wx.navigateTo({
+      url: '../scancard/scancard?greetingwords=' + this.data.greetingwords + '&coverid=' + coverid,
+    })
   },
 
   onMyEvent: function(e) {
@@ -61,19 +61,18 @@ Page({
     that.hidetips()
     that.getHeight()
     console.log('coverid--', coverid)
-    // if (backgroundurl[coverid] != null) {
-    //   that.setData({
-    //     backgrounds: backgroundurl[coverid],
-    //     textcolor: mycolor[coverid],
-    //   })
-    // }
+    var coverImgList = app.globalData.globalCardList
+    that.setData({
+      backgrounds: coverImgList[coverid - 1].imgUrl,
+      greetingwords: mywords[1]
+    })
   },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+  musicclick() {
+    wx.navigateTo({
+      url: '../mymusic/mymusic',
+    })
+  },
 
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -85,7 +84,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
   //文字滚动动画
   util: function(obj) {
@@ -140,16 +139,10 @@ Page({
   },
   hidetips() {
     var that = this
-    var starttime = 3;
-    var times = setInterval(function() {
-      starttime--;
-      console.log('starttime', starttime)
-      if (starttime != null && starttime === 0) {
-        clearInterval(times)
-        that.setData({
-          showtips: true
-        })
-      }
-    }, 1000)
+    setTimeout(function() {
+      that.setData({
+        showtips: true
+      })
+    }, 3000)
   }
 })

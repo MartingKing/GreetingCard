@@ -1,0 +1,12 @@
+<!--pages/mymusic/mymusic.wxml-->
+<view bindtap='gotolastpage' wx:for='[1,2,3,4,5,6,7,8,9]' wx:key wx:for-item='orderitem'>
+  <view class='wordscontainer'>
+    <view class='music-layout'>
+      <image class='music-icon' src='../../image/icon_music.png'></image>
+      <view class='music-desc-layout'>
+        <text class='music-name'>歌名{{item}}</text>
+        <text class='musician'>歌手歌手</text>
+      </view>
+    </view>
+  </view>
+</view>

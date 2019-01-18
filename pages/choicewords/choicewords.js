@@ -17,24 +17,18 @@ Page({
 
   hidetips() {
     var that = this
-    var starttime = 3;
-    var times = setInterval(function() {
-      starttime--;
-      console.log('starttime', starttime)
-      if (starttime != null && starttime === 0) {
-        clearInterval(times)
-        that.setData({
-          showtips: true
-        })
-      }
-    }, 1000)
+    setInterval(function() {
+      that.setData({
+        showtips: true
+      })
+    }, 3000)
   },
   gotolastpage: function(e) {
-    console.log('itemclick:',e)
+    console.log('itemclick:', e)
     var content = e._relatedInfo.anchorTargetText;
     var pages = getCurrentPages();
-    var currPage = pages[pages.length - 1];   //当前页面
-    var prevPage = pages[pages.length - 2];  //上一个页面
+    var currPage = pages[pages.length - 1]; //当前页面
+    var prevPage = pages[pages.length - 2]; //上一个页面
     prevPage.setData({
       greetingwords: content
     })
@@ -54,7 +48,7 @@ Page({
     console.log('coverid', coverid)
     var type = ''
     if (coverid == 1) {
-      type = 'birthday'
+      type = 'spring'
     }
     if (coverid == 2) {
       type = 'lover'

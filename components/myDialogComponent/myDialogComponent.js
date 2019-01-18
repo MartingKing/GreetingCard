@@ -25,7 +25,6 @@ Component({
       value: ' ',
     },
 
-
     inputMsg: {
       type: String,
       value: '请输入...',
@@ -39,6 +38,10 @@ Component({
     cancleBtn: {
       type: Boolean,
       value: true,
+    },
+    inputFocus: {
+      type: Boolean,
+      value: false,
     },
   },
  

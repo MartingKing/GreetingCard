@@ -1,0 +1,40 @@
+<!--pages/scancard/scancard.wxml-->
+<view class='scancontainer' style='background-image: url("{{backgroundurl}}");background-size:100% 100%;'>
+  <!-- <view class="converstyle" style='background-image: url("../../images/cover_bottom.png")'> -->
+  <view class="converstyle">
+    <!-- 信封左侧 -->
+    <image class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" />
+    <!-- 中间背景 -->
+    <image class='covermiddle' src='{{backgroundurl}}' animation="{{animation3}}" style='z-index:{{middlestyle}};position:absolute' />
+    <!-- 描叙信息背景 -->
+    <image class='coversecond' src='../../image/cover_bottom.png' />
+    <view class='sourcedata'>
+      <image class='avatar' src='{{userInfo.avatarUrl}}'>头像</image>
+      <text class='date'>2019.1.15</text>
+      <text class='nickname'>{{userInfo.nickName}}</text>
+      <text class='desc'>发来了贺卡</text>
+    </view>
+    <!-- 信封右侧 -->
+    <image class='coverright' src='../../image/cover_right.png' animation='{{animation2}}' mode="scaleToFill" />
+
+    <!-- 信封左侧用于动画完成后替换漆面的左侧 -->
+    <image hidden='{{isHidden}}' class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" />
+
+    <image class='tidestyle' src='../../image/cover_tide.png' animation='{{animation5}}' />
+
+    <image image class='covertraggle' src='../../image/cover_traggle.png' animation='{{animation4}}' />
+
+  </view>
+
+  <audio src="{{src}}" id="myAudio"></audio>
+
+  <image class='made-card-container-music' src='../../image/icon_music.png' bindtap='musicclick' wx:if="{{isStop}}"></image>
+  <image wx:else class='made-card-container-music' src='../../image/icon_music_stop.png' bindtap='musicclick'></image>
+
+  <view hidden='{{hidenGreeting}}' class="container ">
+    <view class='list' animation='{{animationData}}'>
+      <text class='greeting-words' style='color:{{textcolor}}'>{{greetingwords}}</text>
+    </view>
+  </view>
+
+</view>

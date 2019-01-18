@@ -4,7 +4,7 @@ const app = getApp()
 var cardlist = []
 var coverid = '4'
 Page({
-  data: {
+  data: { 
     collected: false,
     coverlist: [],
     currentindex: '3',
@@ -14,9 +14,10 @@ Page({
     var that = this
     that.data.coverlist = []
     wx.request({
-      url: 'https://www.lizubing.com/article/cover/img/list?pageNo=1&pageSize=10',
+      url: 'https://www.lizubing.com/article/cover/img/list?pageNo=1&pageSize=20',
       success(res) {
         cardlist = res.data.data.list
+        app.globalData.globalCardList = cardlist
         //应该是用户滑动到底了再重新设置
         that.setData({
           coverlist: cardlist,
@@ -27,18 +28,18 @@ Page({
   },
   comment: function() {
     wx.getUserInfo({
-      success: function (res) {
+      success: function(res) {
         //此处为获取微信信息后的业务方法
         wx.navigateTo({
           url: '../comment/comment?coverid=' + coverid
         })
       },
-      fail: function () {
+      fail: function() {
         //获取用户信息失败后。请跳转授权页面
         wx.showModal({
           title: '提示',
           content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               wx.switchTab({
                 url: '../cardme/cardme',
@@ -49,7 +50,7 @@ Page({
       }
     })
   },
- 
+
   like: function() {
     var postCollected = this.data.collected
     this.setData({
@@ -63,7 +64,7 @@ Page({
       coverid = index - 1;
     }
     if (index - 1 == 0) {
-      coverid = 4;
+      coverid = 12;
     }
     console.log('index:', index)
     if (index == 1) {
@@ -75,7 +76,7 @@ Page({
     console.log('args:', args)
   },
   getUserInfo: function(e) {
-    
+
   },
   /**
    * 用户点击右上角分享

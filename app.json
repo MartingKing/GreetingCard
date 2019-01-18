@@ -4,7 +4,9 @@
     "pages/cardme/cardme",
     "pages/madecard/madecard",
     "pages/comment/comment",
-    "pages/choicewords/choicewords"
+    "pages/choicewords/choicewords",
+    "pages/mymusic/mymusic",
+    "pages/scancard/scancard"
   ],
   "window": {
     "backgroundTextStyle": "light",

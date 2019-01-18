@@ -94,6 +94,7 @@ App({
   globalData: {
     userInfo: null,
     userid: '',
-    editcontent:null
+    editcontent:null,
+    globalCardList:[],
   }
 })

@@ -1,0 +1,141 @@
+/* pages/scancard/scancard.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.scancontainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  z-index: 99;
+}
+
+.converstyle {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  background: #7f512d;
+  align-self: center;
+  position: relative;
+  justify-items: center;
+  z-index: 100;
+}
+
+.coverright {
+  height: 100%;
+  width: 55%;
+  margin-left: 45%;
+  position: absolute;
+}
+
+.coverleft {
+  height: 100%;
+  width: 55%;
+  position: absolute;
+}
+
+.coversecond {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  margin-left: 10%;
+}
+
+.covermiddle {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  margin-left: 15%;
+  align-self: center;
+  overflow: visible;
+  z-index: 0;
+}
+
+.tidestyle {
+  display: flex;
+  width: 100%;
+  align-self: center;
+  height: 20px;
+  position: absolute;
+}
+
+.covertraggle {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin-left: 42.5%;
+  position: absolute;
+}
+
+.sourcedata {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: flex-end;
+  margin-top: 10%;
+  margin-left: 68%;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.date {
+  margin-top: 10px;
+  font-size: 28rpx;
+  color: rgb(105, 76, 76);
+}
+
+.nickname {
+  margin-top: 5px;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.desc {
+  font-size: 26rpx;
+  color: #fff;
+}
+
+.container {
+  width: 220px;
+  height: 300rpx;
+  align-self: center;
+  position: fixed;
+  padding-left: 10px;
+  bottom: 0;
+  display: flex;
+  margin-bottom: 90px;
+  overflow: hidden;
+  z-index: 104;
+}
+
+.made-card-container-music {
+  width: 40px;
+  height: 40px;
+  top: 0;
+  padding: 10px;
+  align-self: flex-end;
+  position: absolute;
+  z-index: 103;
+}
+
+.greeting-words {
+  font-size: 36rpx;
+  font-style: initial;
+  width: 220px;
+  align-self: center;
+  font-family: cursive;
+  color: #000;
+  line-height: 30px;
+}

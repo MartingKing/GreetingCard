@@ -1,0 +1,55 @@
+/* pages/mymusic/mymusic.wxss */
+
+page {
+  background-color: rgb(243, 241, 241);
+}
+
+.choicecontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.wordscontainer {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 4px 1px 1px #ccc;
+  margin: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.wordscontainer text {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.music-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.music-desc-layout {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.music-icon {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  align-self: center;
+}
+
+.music-name {
+  font-size: 30rpx;
+  color: rgb(8, 8, 8);
+}
+
+.musician {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: rgb(102, 101, 101);
+}
