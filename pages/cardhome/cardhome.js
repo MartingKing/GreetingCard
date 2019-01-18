@@ -4,7 +4,7 @@ const app = getApp()
 var cardlist = []
 var coverid = '4'
 Page({
-  data: { 
+  data: {
     collected: false,
     coverlist: [],
     currentindex: '3',

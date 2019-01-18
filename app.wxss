@@ -25,7 +25,13 @@ page {
 }
 
 .dividerline {
-  background: #d2d2d2;
+  background: #e6e5e5;
   height: 1rpx;
+  width: 100%;
+}
+
+.dividerlinebig {
+  background: #e6e5e5;
+  height: 16rpx;
   width: 100%;
 }

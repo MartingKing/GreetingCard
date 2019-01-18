@@ -4,10 +4,11 @@
   <view class="placeholder-1"></view>
   <view class="placeholder-2"></view>
   <mp-swipe-card bind:click="handleClickCard" push-list="{{coverlist}}" bind:swipeout="handleSwipeOut" generic:mp-swipe-card-item="card-item">
-    
+
   </mp-swipe-card>
 </view>
-<view class='home-bottom-layout'> 
+
+<view class='home-bottom-layout'>
   <view bindtap='comment'>
     <button plain='true' style='border:none;' class='sharebtn'>
       <image src='../../image/icon_comment.png' mode='widthFix'></image>
@@ -22,4 +23,5 @@
       <image src='../../image/icon_share.png' mode='widthFix'></image>
     </button>
   </view>
+
 </view>

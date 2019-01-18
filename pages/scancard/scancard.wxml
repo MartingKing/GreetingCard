@@ -10,7 +10,7 @@
     <image class='coversecond' src='../../image/cover_bottom.png' />
     <view class='sourcedata'>
       <image class='avatar' src='{{userInfo.avatarUrl}}'>头像</image>
-      <text class='date'>2019.1.15</text>
+      <text class='date'>{{currentdate}}</text>
       <text class='nickname'>{{userInfo.nickName}}</text>
       <text class='desc'>发来了贺卡</text>
     </view>
@@ -37,4 +37,5 @@
     </view>
   </view>
 
+  <button class='sendcard' open-type="share" bindtap='scancard'>发送贺卡</button>
 </view>

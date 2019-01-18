@@ -4,7 +4,8 @@ const util = require('../../utils/util.js')
 //获取应用实例
 const app = getApp()
 const mywords = ['新年佳节到，拜年要赶早，好运跟你跑，吉祥围你绕，财源进腰包，心想事就成，春节齐欢笑，我的祝福如此早，请你一定要收到！',
-  '情人节快乐，预祝有情的你永远浪漫、热情的你永远青春、真情的你永远开心、纯情的你永远快乐、深情的你永远甜蜜、痴情的你永远幸福!']
+  '情人节快乐，预祝有情的你永远浪漫、热情的你永远青春、真情的你永远开心、纯情的你永远快乐、深情的你永远甜蜜、痴情的你永远幸福!'
+]
 var coverid = ''
 Page({
   data: {
@@ -34,10 +35,31 @@ Page({
     })
   },
 
-  scancard() {
-    wx.navigateTo({
-      url: '../scancard/scancard?greetingwords=' + this.data.greetingwords + '&coverid=' + coverid,
+  scancard:function() {
+    var that = this
+    wx.getUserInfo({
+      success: function(res) {
+        //此处为获取微信信息后的业务方法
+        wx.navigateTo({
+          url: '../scancard/scancard?greetingwords=' + that.data.greetingwords + '&coverid=' + coverid,
+        })
+      },
+      fail: function() {
+        //获取用户信息失败后。请跳转授权页面
+        wx.showModal({
+          title: '提示',
+          content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
+          success: function(res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '../cardme/cardme',
+              })
+            }
+          }
+        })
+      }
     })
+
   },
 
   onMyEvent: function(e) {

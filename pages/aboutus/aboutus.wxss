@@ -1,0 +1,29 @@
+/* pages/aboutus/aboutus.wxss */
+
+.aboutcontainer {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.aboutcontainer text {
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100%;
+  font-size: 30rpx;
+  align-self: center;
+}
+
+.award {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 200px;
+  margin-left: 25%;
+  align-self: center;
+  height: 200px;
+}
+
+.feedback{
+  margin-left: 42%;
+}

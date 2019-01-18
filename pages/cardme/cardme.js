@@ -90,17 +90,27 @@ Page({
           wx.setStorage({
             key: "userInfo",
             data: userInfo,
-            success: function (res) {
+            success: function(res) {
               console.log(res)
             },
-            fail: function (res) {
+            fail: function(res) {
               console.log(res)
             },
-            complete: function (res) {
+            complete: function(res) {
               console.log(res)
             },
           })
         }
       })
+  },
+  guide: function(e) {
+    wx.navigateTo({
+      url: '../userguide/userguide',
+    })
+  },
+  about: function(e) {
+    wx.navigateTo({
+      url: '../aboutus/aboutus',
+    })
   },
 })

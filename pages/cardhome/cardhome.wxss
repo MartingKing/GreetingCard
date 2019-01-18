@@ -1,5 +1,5 @@
 page {
-  background: rgb(253, 253, 253);
+  background: #fff
 }
 
 .help-info {
@@ -8,7 +8,7 @@ page {
   bottom: 0;
   width: 100%;
   overflow: auto;
-} 
+}
 
 .home-bottom-layout {
   display: flex;
@@ -23,9 +23,9 @@ page {
 }
 
 .bottom-image-center {
-  margin-top: 16px;
-  width: 35px;
-  height: 35px;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
 }
 
 .bottom-like-num {
@@ -38,7 +38,7 @@ page {
   width: 30px;
   height: 30px;
   background-size: 30px 30px;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
 }
@@ -78,3 +78,4 @@ page {
   transform: translate3d(0, 60rpx, -60rpx);
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
+

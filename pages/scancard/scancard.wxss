@@ -139,3 +139,19 @@ page {
   color: #000;
   line-height: 30px;
 }
+
+.sendcard {
+  width: 120px;
+  height: 40px;
+  display: flex;
+  background: rgb(228, 39, 39);
+  position: absolute;
+  border-radius: 20px;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #fff;
+  z-index: 104;
+  bottom: 0;
+}

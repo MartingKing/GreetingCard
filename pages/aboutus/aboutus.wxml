@@ -1,0 +1,8 @@
+<!--pages/aboutus/aboutus.wxml-->
+<view class='aboutcontainer'>
+  <text>本小程序属于票据宝金融服务有限公司技术部门旗下个人开发者开发，提供的免费祝福问候类工具,欢迎在评论区提意见！\r\n</text>
+
+  <image class='award' src='{{awardurl}}'></image>
+  <view class='feedback'>欢迎打赏</view>
+
+</view>

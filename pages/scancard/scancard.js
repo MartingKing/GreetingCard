@@ -1,5 +1,5 @@
 const app = getApp()
-
+var timeutil = require('../../utils/util.js')
 Page({
 
   /**
@@ -18,17 +18,22 @@ Page({
     animationData: null,
     greetingwords: "",
     src: '',
+    currentdate:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.audioCtx.play()
+    
+    var cardtime = timeutil.formatTime(new Date());
     var words = options.greetingwords
     var coverid = options.coverid
     var coverImgList = app.globalData.globalCardList
     var that = this
     that.setData({
+      currentdate: cardtime,
       userInfo: app.globalData.userInfo,
       backgroundurl: coverImgList[coverid - 1].imgUrl
     })
@@ -229,4 +234,7 @@ Page({
       })
     }, 10000)
   },
+  scancard:function(){
+    console.log('分享')
+  }
 })
