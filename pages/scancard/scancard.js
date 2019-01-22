@@ -1,5 +1,9 @@
 const app = getApp()
 var timeutil = require('../../utils/util.js')
+
+const innerAudioContext = wx.createInnerAudioContext()
+const musicUrl = 'https://www.lizubing.com/upload/mp3/birthday.mp3'
+
 Page({
 
   /**
@@ -18,15 +22,15 @@ Page({
     animationData: null,
     greetingwords: "",
     src: '',
-    currentdate:''
+    currentdate: '',
+    isPlayMusic: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.audioCtx.play()
-    
+
     var cardtime = timeutil.formatTime(new Date());
     var words = options.greetingwords
     var coverid = options.coverid
@@ -42,16 +46,27 @@ Page({
         greetingwords: words,
       })
     }, 13800)
+    that.playMusic()
   },
-
+  playMusic: function() {
+    if (this.data.isPlayMusic) {
+      innerAudioContext.autoplay = true
+      innerAudioContext.src = musicUrl
+      innerAudioContext.seek(1)
+      innerAudioContext.onPlay(() => {
+        console.log('开始播放')
+      })
+      innerAudioContext.onError((res) => {
+        console.log('播放错误', res.errMsg)
+        console.log('播放错误码', res.errCode)
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('myAudio')
-    this.audioCtx.setSrc('https://sz-btfs.ftn.qq.com/ftn_handler/809ab44cce265ae1b132c02c3e7debd7de330b00c1e3442541e63062d17ce3fdbe5112907a9a58281138ad9086f5d0c6cbbeed3b820fbda564988af962697b5e/?fname=%E5%BA%BE%E6%BE%84%E5%BA%86-%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.mp3')
-    this.audioCtx.play()
+
   },
   onShow: function() {
     var that = this
@@ -140,9 +155,17 @@ Page({
       isStop: !temp
     })
     if (temp == true) {
-      this.audioCtx.pause()
+      innerAudioContext.pause()
+      this.setData({
+        isPlayMusic: false
+      })
+      app.globalMusicIsPlay = false
     } else {
-      this.audioCtx.play()
+      innerAudioContext.play()
+      this.setData({
+        isPlayMusic: true
+      })
+      app.globalMusicIsPlay = true
     }
   },
   /**
@@ -199,10 +222,11 @@ Page({
     query.select('.container').boundingClientRect()
     query.select('.list').boundingClientRect()
     query.exec((res) => {
-      obj.container = res[0].height; // 框的height
-      obj.list = res[1].height; // list的height
-      // return obj;
-      this.greetingUtil(obj);
+      if (res[0] != null) {
+        obj.container = res[0].height; // 框的height
+        obj.list = res[1].height; // list的height
+        this.greetingUtil(obj);
+      }
     })
   },
   //文字滚动动画
@@ -234,7 +258,16 @@ Page({
       })
     }, 10000)
   },
-  scancard:function(){
+  scancard: function() {
     console.log('分享')
-  }
+  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+    console.log('退出预览')
+    innerAudioContext.stop()
+    innerAudioContext.destroy()
+  },
+
 })

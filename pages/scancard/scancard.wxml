@@ -25,9 +25,6 @@
     <image image class='covertraggle' src='../../image/cover_traggle.png' animation='{{animation4}}' />
 
   </view>
-
-  <audio src="{{src}}" id="myAudio"></audio>
-
   <image class='made-card-container-music' src='../../image/icon_music.png' bindtap='musicclick' wx:if="{{isStop}}"></image>
   <image wx:else class='made-card-container-music' src='../../image/icon_music_stop.png' bindtap='musicclick'></image>
 

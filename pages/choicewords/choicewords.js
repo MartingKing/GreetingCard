@@ -40,23 +40,23 @@ Page({
 
   /**
    * 生命周期函数--监听页面加载
-   * birthday 生日 1;lantern 元宵 5 ;lover情人节 2; new_year_eve除夕 4; spring春节 3;
+   * birthday 生日 9 5;lantern 元宵 5 ;lover情人节 2 11; new_year_eve除夕 4 10; spring春节 12 3 8 7 6 1;
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     loadmoredata = []
     var coverid = options.coverid
     console.log('coverid', coverid)
     var type = ''
-    if (coverid == 1) {
+    if (coverid == 1 || coverid == 3 || coverid == 6 || coverid == 7 || coverid == 8 || coverid == 12) {
       type = 'spring'
     }
-    if (coverid == 2) {
+    if (coverid == 2 || coverid == 11) {
       type = 'lover'
     }
-    if (coverid == 3) {
-      type = 'spring'
+    if (coverid == 9) {
+      type = 'birthday'
     }
-    if (coverid == 4) {
+    if (coverid == 4 || coverid == 10) {
       type = 'new_year_eve'
     }
     if (coverid == 5) {
@@ -69,6 +69,7 @@ Page({
     that.hidetips()
     that.getWishList(false)
   },
+
   getWishList(isloadmore) {
     var that = this
     wx.showLoading({

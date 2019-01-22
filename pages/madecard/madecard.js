@@ -35,7 +35,7 @@ Page({
     })
   },
 
-  scancard:function() {
+  scancard: function() {
     var that = this
     wx.getUserInfo({
       success: function(res) {
@@ -106,7 +106,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    console.log('21313213121')
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2]; //上一个页面
+    if (app.globalMusicIsPlay == true && isPlayMusic != null) {
+      prevPage.setData({
+        isPlayMusic: false
+      })
+    }
   },
   //文字滚动动画
   util: function(obj) {
@@ -148,9 +155,11 @@ Page({
     query.select('.textanimationcontainer').boundingClientRect()
     query.select('.list').boundingClientRect()
     query.exec((res) => {
-      obj.container = res[0].height; // 框的height
-      obj.list = res[1].height; // list的height
-      this.util(obj);
+      if (res[0] != null) {
+        obj.container = res[0].height; // 框的height
+        obj.list = res[1].height; // list的height
+        this.util(obj);
+      }
     })
   },
   /**

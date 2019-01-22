@@ -96,5 +96,6 @@ App({
     userid: '',
     editcontent:null,
     globalCardList:[],
+    globalMusicIsPlay:false,
   }
 })
