@@ -1,7 +1,12 @@
 /* pages/userguide/userguide.wxss */
-.text{
-  margin-left: 10px;
-  margin-right: 10px;
+
+.guide {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.text {
   font-size: 30rpx;
-   border-bottom: 1px rgb(61, 223, 75) solid;
+  border-bottom: 1px rgb(61, 223, 75) solid;
 }

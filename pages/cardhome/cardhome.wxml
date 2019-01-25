@@ -25,3 +25,4 @@
   </view>
 
 </view>
+ <text hidden='{{showtips}}' class='toptips'>首次使用小程序有可能出现图片显示缓慢的问题，请耐心等待</text>

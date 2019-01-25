@@ -15,13 +15,11 @@ page {
 }
 
 .toptips {
-  background: rgb(174, 235, 77);
-  font-size: 30rpx;
-  padding-left: 130px;
+  background: rgb(241, 88, 42);
+  font-size: 26rpx;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 25px;
 }
 
 .dividerline {

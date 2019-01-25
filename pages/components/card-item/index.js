@@ -21,7 +21,7 @@ Component({
   methods: {
     handleTap(e) {
       var params = e.target.id
-      console.log('卡片id：',params)
+      console.log('卡片id：', e)
       wx.navigateTo({
         url: '../madecard/madecard?id=' + params
       })

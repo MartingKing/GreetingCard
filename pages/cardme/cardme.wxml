@@ -20,4 +20,9 @@
     <image src='../../image/icon_right.png'></image>
   </view>
   <view class='dividerline'></view>
+  <view class='use_guide' bindtap='setting'>
+    <text>设置</text>
+    <image src='../../image/icon_right.png'></image>
+  </view>
+  <view class='dividerline'></view>
 </view>

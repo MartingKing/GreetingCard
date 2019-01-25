@@ -1,12 +1,20 @@
 <!--pages/mymusic/mymusic.wxml-->
-<view bindtap='gotolastpage' wx:for='[1,2,3,4,5,6,7,8,9]' wx:key wx:for-item='orderitem'>
+<view bindtap='gotolastpage' wx:for='{{musicData}}' wx:key='index' wx:for-item='musicitem' data-musicdata='{{musicitem}}'>
   <view class='wordscontainer'>
     <view class='music-layout'>
-      <image class='music-icon' src='../../image/icon_music.png'></image>
-      <view class='music-desc-layout'>
-        <text class='music-name'>歌名{{item}}</text>
-        <text class='musician'>歌手歌手</text>
+      <view class='musicinfo'>
+        <image class='music-icon' src='../../image/icon_music.png'></image>
+        <view class='music-desc-layout'>
+          <text class='music-name'>{{musicitem.musicName}}</text>
+          <text class='musician'>{{musicitem.musicAuthor}}</text>
+        </view>
       </view>
+
+      <image class='playpause' src='../../image/play.png' catchtap='playmusic' wx:if="{{!musicitem.isCheck}}" data-id='{{index}}'></image>
+      <image wx:else class='playpause' src='../../image/pause.png' catchtap='playmusic' data-id='{{index}}'></image>
     </view>
   </view>
+</view>
+<view class='toptipscontainer'>
+  <text hidden='{{showtips}}' class='toptips'>网络不好的情况，点击播放可能一段时间无响应，请耐心等待音乐缓冲</text>
 </view>

@@ -28,6 +28,12 @@ page {
 .music-layout {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.musicinfo {
+  display: flex;
+  flex-direction: row;
 }
 
 .music-desc-layout {
@@ -52,4 +58,21 @@ page {
   font-size: 26rpx;
   margin-top: 10rpx;
   color: rgb(102, 101, 101);
+}
+
+.listenMusic {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  background: rgb(228, 39, 39);
+  border-radius: 20px;
+  align-items: center;
+  align-self: center;
+  color: #fff;
+}
+
+.playpause {
+  width: 30px;
+  height: 30px;
+  align-self: center;
 }

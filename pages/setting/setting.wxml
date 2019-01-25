@@ -1,0 +1,4 @@
+<!--pages/setting/setting.wxml-->
+<view style='margin-top:50px'>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登录 </button>
+</view>

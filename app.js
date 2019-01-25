@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function() {
+    console.log('启动中...',Date.now())
     var that = this
     var userinfo = null
     wx.getStorage({
@@ -9,10 +10,8 @@ App({
         that.globalData.userid = res.data
       },
       fail: function(res) {
-        console.log(res)
       },
       complete: function(res) {
-        console.log(res)
       }
     })
     wx.getStorage({
@@ -22,26 +21,11 @@ App({
         that.globalData.userInfo = userinfo
       },
       fail: function(res) {
-        console.log(res)
       },
       complete: function(res) {
-        console.log(res)
       }
     })
-    // console.log('aaaaa', userinfo)
-    // if (userinfo == null) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
-    //     success: function(res) {
-    //       if (res.confirm) {
-    //         wx.switchTab({
-    //           url: '../cardme/cardme',
-    //         })
-    //       }
-    //     }
-    //   })
-    // }
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -70,8 +54,6 @@ App({
         //todo 登录接口获取sessionkey 和openid等
         var that = this
         var userInfo = that.globalData.userInfo
-        console.log('code', code)
-        console.log('userInfo', userInfo)
         wx.showLoading({
             title: '加载中...',
             icon: 'loading'
@@ -84,7 +66,6 @@ App({
               userInfo: userInfo,
             },
             success: function(res) {
-              console.log('登录信息', res)
               wx.hideLoading()
             }
           })
@@ -93,9 +74,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    userid: '',
+    userid: null,
     editcontent:null,
     globalCardList:[],
-    globalMusicIsPlay:false,
   }
 })

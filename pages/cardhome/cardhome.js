@@ -12,10 +12,23 @@ Page({
 
   onLoad: function() {
     var that = this
+    that.hidetips()
     that.data.coverlist = []
+    wx.showLoading({
+      title: '一大波贺卡来袭，请耐心等待...',
+    })
+
     wx.request({
-      url: 'https://www.lizubing.com/article/cover/img/list?pageNo=1&pageSize=20',
+      url: 'https://www.lizubing.com/article/cover/img/list',
+      data: {
+        pageNo: 1,
+        pageSize: 20,
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       success(res) {
+        wx.hideLoading()
         cardlist = res.data.data.list
         app.globalData.globalCardList = cardlist
         //应该是用户滑动到底了再重新设置
@@ -66,14 +79,12 @@ Page({
     if (index - 1 == 0) {
       coverid = 12;
     }
-    console.log('index:', index)
     if (index == 1) {
       this.setData({
         coverlist: cardlist,
         currentindex: index - 1,
       })
     }
-    console.log('args:', args)
   },
   getUserInfo: function(e) {
 
@@ -97,12 +108,12 @@ Page({
   onShow: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
+  hidetips() {
+    var that = this
+    setTimeout(function() {
+      that.setData({
+        showtips: true
+      })
+    }, 5000)
   },
-
 })

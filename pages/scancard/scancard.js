@@ -1,8 +1,8 @@
 const app = getApp()
 var timeutil = require('../../utils/util.js')
-
 const innerAudioContext = wx.createInnerAudioContext()
-const musicUrl = 'https://www.lizubing.com/upload/mp3/birthday.mp3'
+
+var musicUrl = 'https://www.lizubing.com/upload/mp3/china_boy_congrate.mp3'
 
 Page({
 
@@ -12,84 +12,83 @@ Page({
   data: {
     scrollTop: 0,
     imgOpacity: 1,
-    userInfo: null,
-    backgroundurl: '',
     isHidden: false,
     middlestyle: 0,
     containarstyle: 0,
     hidenGreeting: true,
     isStop: true,
     animationData: null,
-    greetingwords: "",
-    src: '',
-    currentdate: '',
-    isPlayMusic: true,
+    greetingwords: '',
+    shareData: {},
+    shareId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
-    var cardtime = timeutil.formatTime(new Date());
-    var words = options.greetingwords
-    var coverid = options.coverid
-    var coverImgList = app.globalData.globalCardList
     var that = this
-    that.setData({
-      currentdate: cardtime,
-      userInfo: app.globalData.userInfo,
-      backgroundurl: coverImgList[coverid - 1].imgUrl
+    var sid = options.shareId
+    wx.request({
+      url: 'https://www.lizubing.com/article/cover/share/select',
+      data: {
+        shareId: sid,
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success(res) {
+        wx.hideLoading()
+        var words = res.data.data.wishWord
+        musicUrl = res.data.data.musicUrl
+        that.setData({
+          shareData: res.data.data,
+          shareId: sid,
+        })
+        setTimeout(function() {
+          that.setData({
+            greetingwords: words,
+          })
+        }, 13800)
+        that.playMusic(musicUrl)
+      }
     })
-    setTimeout(function() {
-      that.setData({
-        greetingwords: words,
-      })
-    }, 13800)
-    that.playMusic()
-  },
-  playMusic: function() {
-    if (this.data.isPlayMusic) {
-      innerAudioContext.autoplay = true
-      innerAudioContext.src = musicUrl
-      innerAudioContext.seek(1)
-      innerAudioContext.onPlay(() => {
-        console.log('开始播放')
-      })
-      innerAudioContext.onError((res) => {
-        console.log('播放错误', res.errMsg)
-        console.log('播放错误码', res.errCode)
-      })
-    }
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-  onShow: function() {
-    var that = this
     that.createAnimations()
     that.openCardAnimation()
     that.tideAnimation()
-    setTimeout(function() {
+    setTimeout(function () {
       that.translateToLeft()
     }, 4500)
-    setTimeout(function() {
+    setTimeout(function () {
       that.translateToRight()
     }, 6000)
-    setTimeout(function() {
+    setTimeout(function () {
       that.translateAndScale()
     }, 8000)
     //字幕动画不运作  todo
-    setTimeout(function() {
+    setTimeout(function () {
       that.setData({
         hidenGreeting: false
       })
       that.startGreetingAnim()
     }, 13700)
   },
+
+  playMusic: function(url) {
+    console.log('url', url)
+    innerAudioContext.autoplay = true
+    innerAudioContext.loop = true
+    innerAudioContext.src = url
+    innerAudioContext.seek(1)
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放')
+    })
+    innerAudioContext.onError((res) => {
+      console.log('播放错误', res.errMsg)
+      console.log('播放错误码', res.errCode)
+    })
+  },
+ 
   createAnimations: function() {
     this.animationLeft = wx.createAnimation({
       // 动画持续时间，单位ms，默认值 400
@@ -156,16 +155,8 @@ Page({
     })
     if (temp == true) {
       innerAudioContext.pause()
-      this.setData({
-        isPlayMusic: false
-      })
-      app.globalMusicIsPlay = false
     } else {
       innerAudioContext.play()
-      this.setData({
-        isPlayMusic: true
-      })
-      app.globalMusicIsPlay = true
     }
   },
   /**
@@ -187,7 +178,6 @@ Page({
       that.setData({
         containarstyle: 102
       })
-      console.log(that.data.containarstyle)
     }, 3000)
     that.setData({
       animation3: that.animation.export()
@@ -259,15 +249,31 @@ Page({
     }, 10000)
   },
   scancard: function() {
-    console.log('分享')
+
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log('退出预览')
+
+  },
+  onUnload: function() {
     innerAudioContext.stop()
     innerAudioContext.destroy()
   },
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function(res) {
+  console.log('shareId', this.data.shareId)
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  return {
+    title: '您收到了好友的祝福',
+    // path: '/pages/cardhome/cardhome'
+  }
+  }
 })
