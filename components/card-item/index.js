@@ -1,9 +1,10 @@
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    itemData: {
+    itemData: { 
       type: Object,
       value: {}
     }

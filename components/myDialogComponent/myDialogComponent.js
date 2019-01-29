@@ -43,8 +43,12 @@ Component({
       type: Boolean,
       value: false,
     },
+    dialogTop: {
+      type: String,
+      value: '50%',
+    }
   },
- 
+
   data: {
     // 这里是一些组件内部数据
     inputValue: '',
@@ -58,7 +62,7 @@ Component({
         inputValue: e.detail.value
       })
     },
-
+    //自定义方法  选择贺词跳转页面后关闭dialog
     choicewords: function(e) {
       this.triggerEvent('choicewords', e)
       this.setData({
@@ -81,6 +85,21 @@ Component({
       this.triggerEvent('determineevent', determineDetail)
       this.setData({
         inputValue: ""
+      })
+    },
+    //输入完成 监听点击完成的回调方法
+    bindFormSubmit: function(event) {
+      this.triggerEvent('inputfinish', 'finish')
+      this.setData({
+        dialogTop: '50%'
+      })
+    },
+    bindinput:function(e){
+      console.log('bindinput2', e)
+      this.triggerEvent('bindinput', 'bindinput')
+      this.setData({
+        inputFocus: false,
+        dialogTop: '50%'
       })
     }
   }

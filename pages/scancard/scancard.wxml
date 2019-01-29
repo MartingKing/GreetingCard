@@ -1,13 +1,13 @@
 <!--pages/scancard/scancard.wxml-->
 <view class='scancontainer' style='background-image: url("{{shareData.imgUrl}}");background-size:100% 100%;'>
-  <!-- <view class="converstyle" style='background-image: url("../../images/cover_bottom.png")'> -->
+  <!-- <view class="converstyle" style='background-image: url("../../images/cover_bottom.webp")'> -->
   <view class="converstyle">
     <!-- 信封左侧 -->
-    <image class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" />
+    <image class='coverleft' src='../../image/cover_left.webp' animation="{{animation1}}" mode="scaleToFill" />
     <!-- 中间背景 -->
     <image class='covermiddle' src='{{shareData.imgUrl}}' animation="{{animation3}}" style='z-index:{{middlestyle}};position:absolute' />
     <!-- 描叙信息背景 -->
-    <image class='coversecond' src='../../image/cover_bottom.png' />
+    <image class='coversecond' src='../../image/cover_bottom.webp' />
     <view class='sourcedata'>
       <image class='avatar' src='{{shareData.avatar}}'>头像</image>
       <text class='date'>{{shareData.shareDate}}</text>
@@ -15,10 +15,10 @@
       <text class='desc'>发来了贺卡</text>
     </view>
     <!-- 信封右侧 -->
-    <image class='coverright' src='../../image/cover_right.png' animation='{{animation2}}' mode="scaleToFill" />
+    <image class='coverright' src='../../image/cover_right.webp' animation='{{animation2}}' mode="scaleToFill" />
 
     <!-- 信封左侧用于动画完成后替换漆面的左侧 -->
-    <image hidden='{{isHidden}}' class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" />
+    <image hidden='{{isHidden}}' class='coverleft' src='../../image/cover_left.webp' animation="{{animation1}}" mode="scaleToFill" />
 
     <image class='tidestyle' src='../../image/cover_tide.png' animation='{{animation5}}' />
 

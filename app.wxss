@@ -15,9 +15,13 @@ page {
 }
 
 .toptips {
-  background: rgb(241, 88, 42);
-  font-size: 26rpx;
+  background: rgb(89, 14, 209);
+  font-size: 32rpx;
   position: fixed;
+  color: #fff;
+  border-width: 4rpx 0 4rpx 0;
+  border-color: rgb(241, 11, 11);
+  border-style: solid;
   top: 0;
   width: 100%;
 }

@@ -16,11 +16,10 @@
   width: 76%;
   overflow: hidden;
   position: fixed;
-  top: 50%;
   left: 0;
   z-index: 1001;
   background: #fafafa;
-  margin: -220px 12% 0 12%;
+  margin: -150px 12% 0 12%;
   border-radius: 3px;
 }
 

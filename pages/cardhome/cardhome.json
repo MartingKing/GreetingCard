@@ -2,6 +2,6 @@
   "navigationBarTitleText": "精美自制贺卡",
   "usingComponents": {
     "mp-swipe-card": "../../components/mp-swipe-card/index",
-    "card-item": "../components/card-item/index"
+    "card-item": "../../components/card-item/index"
   }
 }

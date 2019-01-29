@@ -27,6 +27,7 @@ Page({
     that.setData({
       isHidden: false,
       inputMsg: content,
+      dialogTop: '25%',
       inputFocus: true,
       // inputPlaceHolder: "请输入想要发送的内容",
       inputHidden: false,
@@ -68,7 +69,7 @@ Page({
         title: '提示',
         content: '您没有登录，是否重新授权登录',
         success: function(res) {
-          if(res.confirm){
+          if (res.confirm) {
             wx.navigateTo({
               url: '../setting/setting',
             })
@@ -122,6 +123,7 @@ Page({
       }
     })
   },
+  //监听dialog是否隐藏
   onMyEvent: function(e) {
     var that = this;
     var content = e.detail;
@@ -130,10 +132,25 @@ Page({
       greetingwords: content,
     })
   },
+  //监听是否收起键盘  如果收起那dialog显示屏幕中间
+  inputfinish: function(e) {
+    this.setData({
+      dialogTop: '50%'
+    })
+  },
+
+  //跳转寄语选择界面
   selectgreetingwords: function(e) {
     console.log('dialog click:', e)
     wx.navigateTo({
       url: '../choicewords/choicewords?coverid=' + coverid,
+    })
+  },
+  bindinput: function(e) {
+    console.log('bindinput',e)
+    this.setData({
+      inputFocus: false,
+      dialogTop: '50%'
     })
   },
   onLoad: function(params) {

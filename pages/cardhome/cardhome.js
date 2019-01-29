@@ -3,6 +3,10 @@ const util = require('../../utils/util.js')
 const app = getApp()
 var cardlist = []
 var coverid = '4'
+
+//引入图片预加载组件  首先请求缩略图的接口，把缩略图展示到卡片，然后请求大图接口，大图加载完毕后，用大图替换缩略图
+const ImgLoader = require('../img-loader/img-loader.js')
+
 Page({
   data: {
     collected: false,
@@ -12,7 +16,9 @@ Page({
 
   onLoad: function() {
     var that = this
-    that.hidetips()
+    //初始化图片预加载组件，并指定统一的加载完成回调
+    that.imgLoader = new ImgLoader(that, that.imageOnLoad.bind(that))
+
     that.data.coverlist = []
     wx.showLoading({
       title: '一大波贺卡来袭，请耐心等待...',
@@ -30,6 +36,9 @@ Page({
       success(res) {
         wx.hideLoading()
         cardlist = res.data.data.list
+        for (let i in cardlist) {
+          cardlist[i].loaded = false
+        }
         app.globalData.globalCardList = cardlist
         //应该是用户滑动到底了再重新设置
         that.setData({
@@ -77,7 +86,7 @@ Page({
       coverid = index - 1;
     }
     if (index - 1 == 0) {
-      coverid = 12;
+      coverid = cardlist.length;
     }
     if (index == 1) {
       this.setData({
@@ -86,34 +95,30 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
 
-  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
 
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
+  //同时发起全部图片的加载
+  loadImages() {
+    this.data.coverlist.forEach(item => {
+      this.imgLoader.load(item.imgUrl)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-  hidetips() {
-    var that = this
-    setTimeout(function() {
-      that.setData({
-        showtips: true
-      })
-    }, 5000)
-  },
+  //加载完成后的回调   可在此处替换缩略图
+  imageOnLoad(err, data) {
+    console.log('data', data)
+    console.log('err', err)
+    const imgList = this.data.coverlist.map(item => {
+      if (item.imgUrl == data.src)
+        item.loaded = true
+      return item
+    })
+    this.setData({
+      coverlist: imgList
+    })
+  }
 })

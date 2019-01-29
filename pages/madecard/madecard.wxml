@@ -1,6 +1,6 @@
 <!--cardme.wxml-->
 <view class='made-card-container' style="background-image:url('{{backgrounds}}');background-size:100% 100%;">
-  <text hidden='{{showtips}}' class='toptips'>点击文字编辑祝福语</text>
+  <text hidden='{{showtips}}' class='toptips' style='padding-left:30%'>点击文字编辑祝福语</text>
 
   <image class='made-card-container-music' src='../../image/icon_music.png' bindtap='musicclick'></image>
 
@@ -10,8 +10,7 @@
     </view>
   </view>
   <!-- 自定义dialog inputMsg对应dialog.js中properties里面的inputMsg属性，大括号里的inputMsg是madecard.js里面的动态内容-->
-  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" inputMsg="{{inputMsg}}" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" inputFocus="{{inputFocus}}"
-  />
+  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" inputMsg="{{inputMsg}}" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" inputFocus="{{inputFocus}}" dialogTop="{{dialogTop}}" bind:inputfinish="inputfinish" bind:bindinput="bindinput"/>
 
   <button open-type="getUserInfo" bindtap='scancard'>预览</button>
 </view>

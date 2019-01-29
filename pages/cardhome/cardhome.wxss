@@ -1,5 +1,6 @@
 page {
-  background: #fff
+  background: #fff;
+  overflow-y: hidden;
 }
 
 .help-info {
@@ -79,3 +80,16 @@ page {
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
+.mp-swipe-card-item {
+  height: 100%;
+  width: 100%;
+  padding: 20rpx;
+  /* background: linear-gradient(to right bottom, red, orange, green, purple); */
+}
+
+.mp-swipe-card-item image {
+  width: 93.5%;
+  height: 95.3%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}

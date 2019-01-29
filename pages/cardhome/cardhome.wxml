@@ -2,9 +2,9 @@
 <view class="swipe-card-container">
   <view class="placeholder-0"></view>
   <view class="placeholder-1"></view>
-  <view class="placeholder-2"></view>
-  <mp-swipe-card bind:click="handleClickCard" push-list="{{coverlist}}" bind:swipeout="handleSwipeOut" generic:mp-swipe-card-item="card-item">
-
+  <view class="placeholder-2"></view> 
+  <mp-swipe-card bind:click="handleClickCard" pushList="{{coverlist}}" bind:swipeout="handleSwipeOut" generic:mp-swipe-card-item="card-item">
+  
   </mp-swipe-card>
 </view>
 
@@ -25,4 +25,7 @@
   </view>
 
 </view>
- <text hidden='{{showtips}}' class='toptips'>首次使用小程序有可能出现图片显示缓慢的问题，请耐心等待</text>
+ 
+ <!-- 引入图片预加载组件 -->
+<import src="../img-loader/img-loader.wxml"/>
+<template is="img-loader" data="{{ imgLoadList }}"></template>

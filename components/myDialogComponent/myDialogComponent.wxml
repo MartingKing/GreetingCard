@@ -1,12 +1,12 @@
 <view hidden='{{dialogHidden}}' bindtap=''>
   <view class='drawer_screen' bindtap='cancleBtn' />
-  <view class='drawer_box'>
+  <view class='drawer_box' style='top:{{dialogTop}}'>
     <view class="drawer_title">编辑祝福语</view>
     <view class='drawer_content'>
 
       <text class='titleMsg'>{{titleMsg}}</text>
 
-      <textarea class="input_base" maxlength='99' hidden='{{inputHidden}}' bindinput="bindKeyInput" value="{{inputMsg}}" placeholder='{{inputPlaceHalder}}' focus='{{inputFocus}}' />
+      <textarea class="input_base" maxlength='99' hidden='{{inputHidden}}' bindinput="bindKeyInput" value="{{inputMsg}}" placeholder='{{inputPlaceHalder}}' focus='{{inputFocus}}' bindconfirm='bindFormSubmit' bindinput='bindinput'/>
       <text bindtap='choicewords' class='quick-text'>点击快速选择祝福语</text>
     </view>
     <view class='sureQuery'>
