@@ -15,8 +15,8 @@
     </button>
   </view>
   <view style='display: flex;flex-direction: column;'>
-    <image class='bottom-image-center' src='../../image/icon_like.png' bindtap='like' wx:if="{{collected}}"></image>
-    <image wx:else class='bottom-image-center' src='../../image/icon_like_gray.png' bindtap='like'></image>
+    <image wx:if="{{collected}}" class='bottom-image-center' src='../../image/icon_like_gray.png' bindtap='like'></image>
+    <image wx:else class='bottom-image-center' src='../../image/icon_like.png' bindtap='like'></image>
   </view>
   <view>
     <button plain='true' open-type="share" style='border:none;' class='sharebtn'>

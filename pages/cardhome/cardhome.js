@@ -2,7 +2,7 @@
 const util = require('../../utils/util.js')
 const app = getApp()
 var cardlist = []
-var coverid = '4'
+var coverid = -1
 
 //引入图片预加载组件  首先请求缩略图的接口，把缩略图展示到卡片，然后请求大图接口，大图加载完毕后，用大图替换缩略图
 const ImgLoader = require('../img-loader/img-loader.js')
@@ -17,8 +17,8 @@ Page({
   onLoad: function() {
     var that = this
     //初始化图片预加载组件，并指定统一的加载完成回调
-    that.imgLoader = new ImgLoader(that, that.imageOnLoad.bind(that))
-
+    // that.imgLoader = new ImgLoader(that, that.imageOnLoad.bind(that))
+    //每次要置空数据，否则数组会重复添加
     that.data.coverlist = []
     wx.showLoading({
       title: '一大波贺卡来袭，请耐心等待...',
@@ -36,6 +36,10 @@ Page({
       success(res) {
         wx.hideLoading()
         cardlist = res.data.data.list
+        //因为第一次加载进来滑动卡片，是没有index变化的，所以给个默认值
+        if (coverid == -1) {
+          coverid = cardlist[cardlist.length - 1].coverId;
+        }
         for (let i in cardlist) {
           cardlist[i].loaded = false
         }
@@ -44,6 +48,7 @@ Page({
         that.setData({
           coverlist: cardlist,
         })
+        // that.loadImages()
       }
     })
 
@@ -82,11 +87,13 @@ Page({
 
   handleSwipeOut(...args) {
     var index = args[0].detail.list.length
+    console.log('index', index)
+    //由于数据请求成功之后给了一个默认值，所以这里是index-2的时候的coverid才是正确id
     if (index - 1 > 0) {
-      coverid = index - 1;
+      coverid = cardlist[index - 2].coverId;
     }
     if (index - 1 == 0) {
-      coverid = cardlist.length;
+      coverid = cardlist[index-1].coverId;
     }
     if (index == 1) {
       this.setData({
@@ -102,7 +109,7 @@ Page({
   onShareAppMessage: function() {
 
   },
-  //同时发起全部图片的加载
+  //同时发起全部图片的加载 设置加载大图还是缩略图
   loadImages() {
     this.data.coverlist.forEach(item => {
       this.imgLoader.load(item.imgUrl)
@@ -110,9 +117,7 @@ Page({
   },
   //加载完成后的回调   可在此处替换缩略图
   imageOnLoad(err, data) {
-    console.log('data', data)
-    console.log('err', err)
-    const imgList = this.data.coverlist.map(item => {
+    var imgList = this.data.coverlist.map(item => {
       if (item.imgUrl == data.src)
         item.loaded = true
       return item

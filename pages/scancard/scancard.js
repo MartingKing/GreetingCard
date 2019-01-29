@@ -27,9 +27,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this
+    var that = this 
     var sid = options.shareId
-    wx.request({
+    wx.request({ 
       url: 'https://www.lizubing.com/article/cover/share/select',
       data: {
         shareId: sid,
@@ -65,7 +65,7 @@ Page({
     setTimeout(function () {
       that.translateAndScale()
     }, 8000)
-    //字幕动画不运作  todo
+    //字幕动画
     setTimeout(function () {
       that.setData({
         hidenGreeting: false

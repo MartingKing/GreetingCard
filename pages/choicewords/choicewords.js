@@ -1,7 +1,8 @@
 // pages/choicewords/choicewords.js
 
 var loadmoredata = []
-
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -12,7 +13,7 @@ Page({
     wishlist: [],
     totalsize: 0,
     offset: 1,
-    mtype: 4
+    mtype: "",
   },
 
   hidetips() {
@@ -43,26 +44,19 @@ Page({
    * birthday 生日 9 5;lantern 元宵 5 ;lover情人节 2 11; new_year_eve除夕 4 10; spring春节 12 3 8 7 6 1;
    */
   onLoad: function (options) {
+    var that = this
+
     loadmoredata = []
     var coverid = options.coverid
     console.log('coverid', coverid)
+    
     var type = ''
-    if (coverid == 1 || coverid == 3 || coverid == 6 || coverid == 7 || coverid == 8 || coverid == 12) {
-      type = 'spring'
+    var coverImgList = app.globalData.globalCardList
+    for (let i in coverImgList) {
+      if (coverImgList[i].coverId == coverid) {
+        type = coverImgList[i].wishType
+      }
     }
-    if (coverid == 2 || coverid == 11) {
-      type = 'lover'
-    }
-    if (coverid == 9) {
-      type = 'birthday'
-    }
-    if (coverid == 4 || coverid == 10) {
-      type = 'new_year_eve'
-    }
-    if (coverid == 5) {
-      type = 'lantern'
-    }
-    var that = this
     that.setData({
       mtype: type
     })
@@ -80,12 +74,13 @@ Page({
         offset: that.data.offset + 1
       })
     }
+    console.log('type', that.data.mtype)
     wx.request({
       url: 'https://www.lizubing.com/article/wish/list',
       data: {
         wishType: that.data.mtype,
         pageNo: that.data.offset,
-        pageSize: 20
+        pageSize: 10
       },
       success(res) {
         wx.hideLoading()

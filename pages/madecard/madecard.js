@@ -147,7 +147,7 @@ Page({
     })
   },
   bindinput: function(e) {
-    console.log('bindinput',e)
+    console.log('bindinput', e)
     this.setData({
       inputFocus: false,
       dialogTop: '50%'
@@ -158,28 +158,35 @@ Page({
     var that = this
     var mywords = ''
     coverid = params.id
-
-    if (coverid == 1 || coverid == 3 || coverid == 6 || coverid == 7 || coverid == 8 || coverid == 12) {
+    var coverImgList = app.globalData.globalCardList
+    var type = ''
+    var imgurl = ''
+    for (let i in coverImgList) {
+      if (coverImgList[i].coverId == coverid) {
+        imgurl = coverImgList[i].imgBigUrl
+        type = coverImgList[i].wishType
+      }
+    }
+    if (type == "spring") {
       mywords = '新年佳节到，拜年要赶早，好运跟你跑，吉祥围你绕，财源进腰包，心想事就成，春节齐欢笑，我的祝福如此早，请你一定要收到！'
     }
-    if (coverid == 2 || coverid == 11) {
-      mywords = '情人节快乐，预祝有情的你永远浪漫、热情的你永远青春、真情的你永远开心、纯情的你永远快乐、深情的你永远甜蜜、痴情的你永远幸福!'
+    if (type == "lover") {
+      mywords = '遇见你，是一种缘分；爱上你，是一种幸福；想念你，是一种习惯；珍惜你，是一种永恒；祝福你，是一种必然，情人节快乐！'
     }
-    if (coverid == 9) {
+    if (type == "birthday") {
       mywords = '全世界都为这一天而高兴，因为那一年这一天是你带给所有人一个欢乐，因为这一天是你的生日，祝生日快乐！'
     }
-    if (coverid == 4 || coverid == 10) {
+    if (type == "new_year_eve") {
       mywords = '大年三十更像年，一家老小共团圆。关上大门年夜饭，打开电视看春晚。除夕之夜大联欢，祝福短信木有断。守岁钟声迎新年，鞭炮齐鸣过大年。除夕快乐，猪年吉祥！'
     }
-    if (coverid == 5) {
-      mywords = '春节鸡上到，对联贴门照;烟花绽夜空，欢声显热闹;电话短信来问好，合家欢聚笑一笑;健康围绕财运招，幸福生活常拥抱。新春快乐！'
+    if (type == "lantern") {
+      mywords = '午夜人散尽，花好月圆家人团圆，群灯吐艳你最“好”。寄去相思和祝愿，网中情缘愿梦“圆”'
     }
     that.hidetips()
     that.getHeight()
-    console.log('coverid--', coverid)
-    var coverImgList = app.globalData.globalCardList
+
     that.setData({
-      backgrounds: coverImgList[coverid - 1].imgUrl,
+      backgrounds: imgurl,
       greetingwords: mywords
     })
   },
