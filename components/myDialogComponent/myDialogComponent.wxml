@@ -6,7 +6,7 @@
 
       <text class='titleMsg'>{{titleMsg}}</text>
 
-      <textarea class="input_base" maxlength='99' hidden='{{inputHidden}}' bindinput="bindKeyInput" value="{{inputMsg}}" placeholder='{{inputPlaceHalder}}' focus='{{inputFocus}}' bindconfirm='bindFormSubmit' bindinput='bindinput'/>
+      <textarea class="input_base" maxlength='99' hidden='{{inputHidden}}' bindinput="bindKeyInput" value="{{inputMsg}}" placeholder='{{inputPlaceHalder}}' focus='{{inputFocus}}' bindconfirm='bindFormSubmit' bindinput='bindinput' bindtap='textareaFocus'/>
       <text bindtap='choicewords' class='quick-text'>点击快速选择祝福语</text>
     </view>
     <view class='sureQuery'>

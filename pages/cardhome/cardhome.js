@@ -1,7 +1,7 @@
 //cardhome.js
 const util = require('../../utils/util.js')
 const app = getApp()
-var cardlist = []
+var cardlist = [] 
 var coverid = -1
 
 //引入图片预加载组件  首先请求缩略图的接口，把缩略图展示到卡片，然后请求大图接口，大图加载完毕后，用大图替换缩略图

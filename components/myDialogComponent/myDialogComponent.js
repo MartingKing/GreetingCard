@@ -89,17 +89,24 @@ Component({
     },
     //输入完成 监听点击完成的回调方法
     bindFormSubmit: function(event) {
-      this.triggerEvent('inputfinish', 'finish')
+      this.triggerEvent('inputfinish', event)
       this.setData({
         dialogTop: '50%'
       })
     },
     bindinput:function(e){
       console.log('bindinput2', e)
-      this.triggerEvent('bindinput', 'bindinput')
+      this.triggerEvent('bindinput', e)
       this.setData({
         inputFocus: false,
         dialogTop: '50%'
+      })
+    },
+    textareaFocus:function(e){
+      this.triggerEvent('textareaFocus', e)
+      this.setData({
+        inputFocus: true,
+        dialogTop: '29%'
       })
     }
   }

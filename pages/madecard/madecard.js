@@ -27,7 +27,7 @@ Page({
     that.setData({
       isHidden: false,
       inputMsg: content,
-      dialogTop: '25%',
+      dialogTop: '28%',
       inputFocus: true,
       // inputPlaceHolder: "请输入想要发送的内容",
       inputHidden: false,
@@ -138,7 +138,12 @@ Page({
       dialogTop: '50%'
     })
   },
-
+  textareaFocus: function() {
+    this.setData({
+      inputFocus: true,
+      dialogTop: '29%'
+    })
+  },
   //跳转寄语选择界面
   selectgreetingwords: function(e) {
     console.log('dialog click:', e)

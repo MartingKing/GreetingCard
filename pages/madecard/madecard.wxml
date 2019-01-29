@@ -10,7 +10,7 @@
     </view>
   </view>
   <!-- 自定义dialog inputMsg对应dialog.js中properties里面的inputMsg属性，大括号里的inputMsg是madecard.js里面的动态内容-->
-  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" inputMsg="{{inputMsg}}" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" inputFocus="{{inputFocus}}" dialogTop="{{dialogTop}}" bind:inputfinish="inputfinish" bind:bindinput="bindinput"/>
+  <my-component-dialog bindchoicewords="selectgreetingwords" bind:determineevent="onMyEvent" inputMsg="{{inputMsg}}" bind:cancleevent="cancleBtn" dialog-hidden="{{isHidden}}" input-hidden="{{inputHidden}}" cancle-btn="{{cancleBtn}}" inputFocus="{{inputFocus}}" dialogTop="{{dialogTop}}" bind:inputfinish="inputfinish" bind:bindinput="bindinput" bind:textareaFocus="textareaFocus"/>
 
   <button open-type="getUserInfo" bindtap='scancard'>预览</button>
 </view>
