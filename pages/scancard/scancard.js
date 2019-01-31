@@ -14,22 +14,25 @@ Page({
     imgOpacity: 1,
     isHidden: false,
     middlestyle: 0,
+    leftstyle: 5,
     containarstyle: 0,
     hidenGreeting: true,
     isStop: true,
     animationData: null,
     greetingwords: '',
     shareData: {},
-    shareId: ''
+    shareId: '',
+    tideMarginTop: '74%',
+    traggleMarginTop: '70%',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this 
+    var that = this
     var sid = options.shareId
-    wx.request({ 
+    wx.request({
       url: 'https://www.lizubing.com/article/cover/share/select',
       data: {
         shareId: sid,
@@ -49,29 +52,42 @@ Page({
           that.setData({
             greetingwords: words,
           })
-        }, 13800)
+        }, 14200)
         that.playMusic(musicUrl)
       }
     })
+    //适配iphone x
+    // if (app.globalData.isIpx) {
+    //   this.setData({
+    //     tideMarginTop: '96.5%',
+    //     traggleMarginTop: '92.5%',
+    //   })
+    // } else {
+    //   this.setData({
+    //     tideMarginTop: '74%',
+    //     traggleMarginTop: '70%',
+    //   })
+    // }
+
     that.createAnimations()
     that.openCardAnimation()
     that.tideAnimation()
-    setTimeout(function () {
+    setTimeout(function() {
       that.translateToLeft()
-    }, 4500)
-    setTimeout(function () {
-      that.translateToRight()
     }, 6000)
-    setTimeout(function () {
+    setTimeout(function() {
+      that.translateToRight()
+    }, 7500)
+    setTimeout(function() {
       that.translateAndScale()
-    }, 8000)
+    }, 9000)
     //字幕动画
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         hidenGreeting: false
       })
       that.startGreetingAnim()
-    }, 13700)
+    }, 15000)
   },
 
   playMusic: function(url) {
@@ -79,16 +95,30 @@ Page({
     innerAudioContext.autoplay = true
     innerAudioContext.loop = true
     innerAudioContext.src = url
-    innerAudioContext.seek(1)
-    innerAudioContext.onPlay(() => {
-      console.log('开始播放')
+    innerAudioContext.onWaiting(() => {
+      // wx.showLoading({
+      //   title: '音乐加载中',
+      // })
+    })
+    innerAudioContext.onCanplay(() => {
+      // wx.hideLoading()
+      innerAudioContext.play()
     })
     innerAudioContext.onError((res) => {
       console.log('播放错误', res.errMsg)
       console.log('播放错误码', res.errCode)
+      wx.showModal({
+        title: '音乐出错啦',
+        content: '返回重新编辑贺卡？\r（或者点击右上角音乐图标试试）',
+        success: function(res) {
+          if (res.confirm) {
+            wx.navigateBack()
+          }
+        }
+      })
     })
   },
- 
+
   createAnimations: function() {
     this.animationLeft = wx.createAnimation({
       // 动画持续时间，单位ms，默认值 400
@@ -123,11 +153,18 @@ Page({
    *信封右侧打开动画
    */
   translateToRight: function() {
-    this.animationRight.rotateY(180, 0).step()
-    this.setData({
+    var that = this
+    that.animationRight.rotateY(180, 0).step()
+    that.setData({
       //输出动画
-      animation2: this.animationRight.export()
+      animation2: that.animationRight.export(),
+
     })
+    setTimeout(function() {
+      that.setData({
+        rightstyle: '0',
+      })
+    }, 2800)
   },
   /**
    *信封左侧打开动画
@@ -141,7 +178,7 @@ Page({
     })
     setTimeout(function() {
       that.setData({
-        isHidden: true
+        leftstyle: 0
       })
     }, 2000)
   },
@@ -168,7 +205,7 @@ Page({
       duration: 2000,
       delay: 500
     })
-    that.animation.translateX(-230).step().translateX(0).scale(2.05, 2.14).step()
+    that.animation.translateX(-230).step().translateX(0).scale(2.96, 2.66).step()
     setTimeout(function() {
       that.setData({
         middlestyle: 101
@@ -261,19 +298,26 @@ Page({
     innerAudioContext.stop()
     innerAudioContext.destroy()
   },
-
+  navigateToHome: function() {
+    wx.switchTab({
+      url: '../cardhome/cardhome',
+    })
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-  console.log('shareId', this.data.shareId)
-  if (res.from === 'button') {
-    // 来自页面内转发按钮
-    console.log(res.target)
-  }
-  return {
-    title: '您收到了好友的祝福',
-    // path: '/pages/cardhome/cardhome'
-  }
+    console.log('shareId', this.data.shareId)
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '收到来自' + this.data.shareData.username + "的贺卡",
+      // path: '/pages/cardhome/cardhome'
+    }
+  },
+  onShow: function() {
+
   }
 })

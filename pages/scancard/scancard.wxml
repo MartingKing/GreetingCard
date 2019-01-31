@@ -1,12 +1,10 @@
 <!--pages/scancard/scancard.wxml-->
 <view class='scancontainer' style='background-image: url("{{shareData.imgUrl}}");background-size:100% 100%;'>
-  <!-- <view class="converstyle" style='background-image: url("../../images/cover_bottom.png")'> -->
-  <view class="converstyle">
+
+  <view class="converstyle"> 
     <image src='../../image/cover_bg.png' class='coverbg'></image>
-    <!-- 信封左侧 -->
-    <image class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" />
     <!-- 中间背景 -->
-    <image class='covermiddle' src='{{shareData.imgUrl}}' animation="{{animation3}}" style='z-index:{{middlestyle}};position:absolute' />
+    <image class='covermiddle' src='{{shareData.imgUrl}}' animation="{{animation3}}" style='z-index:{{middlestyle}};position:absolute;' />
     <!-- 描叙信息背景 -->
     <image class='coversecond' src='../../image/cover_bottom.png' />
     <view class='sourcedata'>
@@ -15,17 +13,15 @@
       <text class='nickname'>{{shareData.username}}</text>
       <text class='desc'>发来了贺卡</text>
     </view>
-    <!-- 信封右侧 -->
-    <image class='coverright' src='../../image/cover_right.png' animation='{{animation2}}' mode="scaleToFill" />
-
-    <!-- 信封左侧用于动画完成后替换漆面的左侧 -->
-    <image hidden='{{isHidden}}' class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" />
-
-    <image class='tidestyle' src='../../image/cover_tide.png' animation='{{animation5}}' />
-
-    <image image class='covertraggle' src='../../image/cover_traggle.png' animation='{{animation4}}' />
-
   </view>
+
+  <!-- 信封右侧 -->
+  <image class='coverright' src='../../image/cover_right.png' animation='{{animation2}}' mode="scaleToFill" style='z-index:{{rightstyle}};position:absolute;'/>
+  <!-- 信封左侧 -->
+  <image class='coverleft' src='../../image/cover_left.png' animation="{{animation1}}" mode="scaleToFill" style='z-index:{{leftstyle}};position:absolute' />
+  <image class='tidestyle' src='../../image/cover_tide.png' animation='{{animation5}}'  />
+  <image image class='covertraggle' src='../../image/cover_traggle.png' animation='{{animation4}}' />
+
   <image class='made-card-container-music' src='../../image/icon_music.png' bindtap='musicclick' wx:if="{{isStop}}"></image>
   <image wx:else class='made-card-container-music' src='../../image/icon_music_stop.png' bindtap='musicclick'></image>
 
@@ -35,5 +31,8 @@
     </view>
   </view>
 
-  <button class='sendcard' open-type="share" bindtap='scancard'>发送贺卡</button>
+  <view class='bottom_buttom_container'>
+    <button class='sendcard' open-type="share" bindtap='scancard'>发送贺卡</button>
+    <button class='sendcard' bindtap='navigateToHome'>我要制作</button>
+  </view>
 </view>

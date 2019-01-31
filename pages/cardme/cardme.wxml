@@ -10,13 +10,13 @@
   <view class='marginView'></view>
   <view class='dividerlinebig'></view>
   <view class='use_guide' bindtap='guide'>
-    <text>使用引导</text>
+    <text>新手引导</text>
     <image src='../../image/icon_right.png'></image>
   </view>
   <view class='dividerline'></view>
 
   <view class='use_guide' bindtap='about'>
-    <text>关于我们</text>
+    <text>关于</text>
     <image src='../../image/icon_right.png'></image>
   </view>
   <view class='dividerline'></view>

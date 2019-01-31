@@ -1,11 +1,14 @@
 page {
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
 }
 
 .made-card-container {
   display: flex;
+  width: 100%;
   height: 100%;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -38,7 +41,6 @@ page {
   border-radius: 20px;
   margin-bottom: 30px;
   align-items: center;
-  align-self: center;
   color: #fff;
   justify-content: center;
   bottom: 0;
@@ -47,7 +49,6 @@ page {
 .textanimationcontainer {
   width: 200px;
   height: 240rpx;
-  align-self: center;
   position: fixed;
   padding-left: 5px;
   bottom: 0;

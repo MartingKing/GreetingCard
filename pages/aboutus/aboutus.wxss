@@ -6,7 +6,13 @@
 
 .describe {
   align-self: center;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.describe text {
+  font-size: 26rpx;
 }
 
 .award {

@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 
 //获取应用实例
 const app = getApp()
-
+var mywords = ''
 var coverid = ''
 Page({
   data: {
@@ -22,7 +22,15 @@ Page({
   },
   //点击显示dialog
   editgreetingworlds: function(e) {
-    var content = e._relatedInfo.anchorTargetText
+    var content = ''
+    try {
+      content = e._relatedInfo.anchorTargetText == null ? mywords : e._relatedInfo.anchorTargetText　　
+    } catch (error) {　　
+      // 此处是负责例外处理的语句
+      console.log(error)　　
+      return
+    } 
+    
     var that = this;
     that.setData({
       isHidden: false,
@@ -82,9 +90,13 @@ Page({
     if (musicId == null) {
       wx.showModal({
         title: '提示',
-        content: '你没有选择音乐，是否使用默认音乐？',
+        content: '您没有选择音乐，是否去选择音乐？',
         success: function(res) {
           if (res.confirm) {
+            wx.navigateTo({
+              url: '../mymusic/mymusic',
+            })
+          }else{
             musicId = 5
             that.doRequest(musicId, userId, coverid, wishs)
           }
@@ -161,7 +173,6 @@ Page({
   onLoad: function(params) {
     //快速选择界面返回的寄语
     var that = this
-    var mywords = ''
     coverid = params.id
     var coverImgList = app.globalData.globalCardList
     var type = ''

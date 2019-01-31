@@ -1,5 +1,7 @@
 /**app.wxss**/
 
+/* ios系统有些不支持alin-item alin-self这样的属性，全部用百分比布局 */
+
 /* .container {
   height: 100%;
   display: flex;
@@ -16,14 +18,18 @@ page {
 
 .toptips {
   background: rgb(89, 14, 209);
-  font-size: 32rpx;
-  position: fixed;
-  color: #fff;
+  position: absolute;
   border-width: 4rpx 0 4rpx 0;
   border-color: rgb(241, 11, 11);
   border-style: solid;
+  text-align: center;
   top: 0;
   width: 100%;
+}
+
+.toptips text {
+  font-size: 32rpx;
+  color: #fff;
 }
 
 .dividerline {

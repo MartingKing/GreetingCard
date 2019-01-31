@@ -1,8 +1,11 @@
 /* pages/scancard/scancard.wxss */
 
+/* ios系统有些不支持alin-item alin-self这样的属性，全部用百分比布局 */
+
 page {
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
 }
 
 .scancontainer {
@@ -11,33 +14,45 @@ page {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 200rpx 0;
+  padding: 150rpx 0;
+  justify-content: center;
   box-sizing: border-box;
   z-index: 99;
 }
 
 .converstyle {
+  /* background: #7f512d; */
   width: 70%;
   height: 100%;
   display: flex;
-  /* background: #7f512d; */
-  align-self: center;
   position: relative;
+  align-self: center;
+  justify-content: center;
   justify-items: center;
-  z-index: 100;
+  z-index: 4;
 }
 
 .coverright {
   height: 100%;
-  width: 55%;
+  width: 40%;
+  padding: 150rpx 0;
+  box-sizing: border-box;
+  align-content: center;
   margin-left: 45%;
   position: absolute;
+  z-index: 4;
 }
 
 .coverleft {
   height: 100%;
-  width: 55%;
+  width: 40%;
+  margin-left: 14.9%;
+  padding: 150rpx 0;
+  box-sizing: border-box;
+  align-content: center;
+  align-self: flex-start;
   position: absolute;
+  z-index: 6;
 }
 
 .coversecond {
@@ -45,52 +60,54 @@ page {
   width: 90%;
   height: 100%;
   display: flex;
-  margin-left: 10%;
+  z-index: 3;
+  margin-left: 5.5%;
 }
 
 .covermiddle {
   position: absolute;
-  width: 70%;
-  height: 70%;
-  margin-left: 15%;
+  width: 50%;
+  height: 50%;
   align-self: center;
   overflow: visible;
-  z-index: 1;
+  z-index: 6;
 }
 
 .coverbg {
   position: absolute;
   width: 100%;
-  height: 98.4%;
-  align-self: center;
+  height: 98.6%;
+  margin-top: 1.3%;
   overflow: visible;
   z-index: 0;
 }
 
 .tidestyle {
   display: flex;
-  width: 100%;
-  align-self: center;
+  width: 70%;
   height: 20px;
+  align-self: center;
   position: absolute;
+  z-index: 9;
 }
 
 .covertraggle {
   display: flex;
   width: 40px;
-  height: 40px;
   align-self: center;
-  margin-left: 42.5%;
+  height: 40px;
   position: absolute;
+  z-index: 9;
 }
 
 .sourcedata {
   display: flex;
   flex-direction: column;
   position: absolute;
-  align-items: flex-end;
   margin-top: 10%;
-  margin-left: 68%;
+  align-items: flex-end;
+  margin-left: 14%;
+  z-index: 4;
 }
 
 .avatar {
@@ -101,6 +118,7 @@ page {
 
 .date {
   margin-top: 10px;
+  align-content: flex-end;
   font-size: 28rpx;
   color: rgb(105, 76, 76);
 }
@@ -119,8 +137,8 @@ page {
 .container {
   width: 200px;
   height: 240rpx;
-  align-self: center;
   position: fixed;
+  align-self: center;
   padding-left: 5px;
   bottom: 0;
   display: flex;
@@ -149,18 +167,25 @@ page {
   line-height: 30px;
 }
 
+.bottom_buttom_container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  margin-bottom: 20px;
+  flex-direction: row;
+  z-index: 104;
+  bottom: 0;
+  justify-content: space-between;
+}
+
 .sendcard {
   width: 120px;
   height: 40px;
   display: flex;
-  background: rgb(228, 39, 39);
-  position: absolute;
+  background: #d81e06;
   border-radius: 20px;
   align-items: center;
   align-self: center;
   justify-content: center;
-  margin-bottom: 20px;
   color: #fff;
-  z-index: 104;
-  bottom: 0;
 }

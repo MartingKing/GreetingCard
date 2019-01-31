@@ -1,6 +1,9 @@
 <!--pages/choicewords/choicewords.wxml-->
 <view bindtap='gotolastpage' wx:for='{{wishlist}}' wx:key wx:for-item='orderitem'>
-  <text hidden='{{showtips}}' class='toptips' style='padding-left:30%'>点击选择喜欢的祝福语</text>
+  <view class='toptips'>
+    <text hidden='{{showtips}}'>点击选择喜欢的祝福语</text>
+  </view>
+
   <!-- url="../madecard/madecard?wishwords={{orderitem.wishContent}}" -->
   <view class='wordscontainer'>
     <text>{{orderitem.wishContent}}</text>

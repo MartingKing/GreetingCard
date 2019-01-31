@@ -25,7 +25,18 @@ App({
       complete: function(res) {
       }
     })
-    
+    // wx.getSystemInfo({
+    //   success: function (res) {
+    //     //model中包含着设备信息
+    //     console.log(res)
+    //     var model = res.model
+    //     if (model.search('iPhone X') != -1) {
+    //       that.globalData.isIpx = true;
+    //     } else {
+    //       that.globalData.isIpx = false;
+    //     }
+    //   }
+    // })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -77,5 +88,6 @@ App({
     userid: null,
     editcontent:null,
     globalCardList:[],
+    isIpx:false,
   }
 })

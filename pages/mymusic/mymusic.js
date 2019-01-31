@@ -22,8 +22,9 @@ Page({
   onLoad: function(options) {
     loadmoredata = []
     this.getMusicList(false)
+    this.hidetips()
   },
-  getMusicList(isloadmore){
+  getMusicList(isloadmore) {
     var that = this
     wx.showLoading({
       title: '数据加载中...',
@@ -60,10 +61,9 @@ Page({
     })
   },
   playmusic: function(e) {
-   
     let id = e.currentTarget.dataset.id
-    innerAudioContext.seek(1)
-
+    innerAudioContext.autoplay = true
+    innerAudioContext.loop = true
     innerAudioContext.onWaiting(() => {
       wx.showLoading({
         title: '音乐加载中...',
@@ -73,38 +73,26 @@ Page({
       wx.hideLoading()
       console.log('onCanplay')
     })
-    innerAudioContext.onPlay(() => {
-      console.log('onPlay')
-    })
-    innerAudioContext.onPause(() => {
-      console.log('onPause')
-    })
+    var postCollected = this.data.collected
     for (var i in this.data.musicData) {
       if (id == this.data.musicData[i].musicId - 1) {
         innerAudioContext.src = this.data.musicData[i].musicUrl
         if (this.data.musicData[i].isCheck == false) {
           this.data.musicData[i].isCheck = true
+          innerAudioContext.play()
           this.setData({
+            collected: true,
             musicData: this.data.musicData
           })
         } else {
+          innerAudioContext.pause()
           this.data.musicData[i].isCheck = false
           this.setData({
+            collected: false,
             musicData: this.data.musicData
           })
         }
       }
-    }
-
-    var postCollected = this.data.collected
-    this.setData({
-      collected: !postCollected
-    })
-    console.log('postCollected', postCollected)
-    if (postCollected) {
-      innerAudioContext.play()
-    } else {
-      innerAudioContext.pause()
     }
   },
   gotolastpage: function(e) {
@@ -142,9 +130,15 @@ Page({
       })
     }
   },
-
+  hidetips() {
+    var that = this
+    setTimeout(function() {
+      that.setData({
+        showtips: true
+      })
+    }, 4000)
+  },
   onUnload: function() {
     innerAudioContext.stop()
-    innerAudioContext.destroy()
   }
 })

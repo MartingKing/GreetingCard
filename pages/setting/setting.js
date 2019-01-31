@@ -41,6 +41,15 @@ Page({
         },
 
         success: function(res) {
+          wx.showModal({
+            title: '登录成功',
+            content: '是否返回重新编辑贺卡？',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack()
+              }
+            }
+          })
           wx.hideLoading()
           console.log('登录信息:', res.data)
           console.log('userid;', res.data.data.userId)

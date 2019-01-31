@@ -26,7 +26,14 @@ Page({
   },
   gotolastpage: function(e) {
     console.log('itemclick:', e)
-    var content = e._relatedInfo.anchorTargetText;
+    var content = ''
+    try {
+      content = e._relatedInfo.anchorTargetText == null ? mywords : e._relatedInfo.anchorTargetText
+    } catch (error) {
+      // 此处是负责例外处理的语句
+      console.log(error)
+      return
+    } 
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1]; //当前页面
     var prevPage = pages[pages.length - 2]; //上一个页面
