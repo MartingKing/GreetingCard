@@ -139,23 +139,24 @@ Page({
   onMyEvent: function(e) {
     var that = this;
     var content = e.detail;
+    console.log('确定111', content)
     that.setData({
       isHidden: true,
       greetingwords: content,
     })
   },
   //监听是否收起键盘  如果收起那dialog显示屏幕中间
-  inputfinish: function(e) {
-    this.setData({
-      dialogTop: '50%'
-    })
-  },
-  textareaFocus: function() {
-    this.setData({
-      inputFocus: true,
-      dialogTop: '29%'
-    })
-  },
+  // inputfinish: function(e) {
+  //   this.setData({
+  //     dialogTop: '50%'
+  //   })
+  // },
+  // textareaFocus: function() {
+  //   this.setData({
+  //     inputFocus: true,
+  //     dialogTop: '29%'
+  //   })
+  // },
   //跳转寄语选择界面
   selectgreetingwords: function(e) {
     console.log('dialog click:', e)
@@ -163,13 +164,13 @@ Page({
       url: '../choicewords/choicewords?coverid=' + coverid,
     })
   },
-  bindinput: function(e) {
-    console.log('bindinput', e)
-    this.setData({
-      inputFocus: false,
-      dialogTop: '50%'
-    })
-  },
+  // bindinput: function(e) {
+  //   console.log('bindinput', e)
+  //   this.setData({
+  //     inputFocus: false,
+  //     dialogTop: '50%'
+  //   })
+  // },
   onLoad: function(params) {
     //快速选择界面返回的寄语
     var that = this
@@ -183,28 +184,28 @@ Page({
         type = coverImgList[i].wishType
       }
     }
-    if (type == "spring") {
-      mywords = '新年佳节到，拜年要赶早，好运跟你跑，吉祥围你绕，财源进腰包，心想事就成，春节齐欢笑，我的祝福如此早，请你一定要收到！'
-    }
-    if (type == "lover") {
-      mywords = '遇见你，是一种缘分；爱上你，是一种幸福；想念你，是一种习惯；珍惜你，是一种永恒；祝福你，是一种必然，情人节快乐！'
-    }
-    if (type == "birthday") {
-      mywords = '全世界都为这一天而高兴，因为那一年这一天是你带给所有人一个欢乐，因为这一天是你的生日，祝生日快乐！'
-    }
-    if (type == "new_year_eve") {
-      mywords = '大年三十更像年，一家老小共团圆。关上大门年夜饭，打开电视看春晚。除夕之夜大联欢，祝福短信木有断。守岁钟声迎新年，鞭炮齐鸣过大年。除夕快乐，猪年吉祥！'
-    }
-    if (type == "lantern") {
-      mywords = '午夜人散尽，花好月圆家人团圆，群灯吐艳你最“好”。寄去相思和祝愿，网中情缘愿梦“圆”'
-    }
+    //请求祝福语
+    wx.request({
+      url: 'https://www.lizubing.com/article/wish/list',
+      data: {
+        wishType: type,
+        pageNo: 1,
+        pageSize: 10
+      },
+      success(res) {
+        var dataset = res.data.data.list
+        var random = Math.floor(Math.random() * 9)
+        mywords = dataset[random].wishContent
+        console.log('mywords', mywords)
+        that.setData({
+          backgrounds: imgurl,
+          greetingwords: mywords
+        })
+      }
+    })
     that.hidetips()
     that.getHeight()
-
-    that.setData({
-      backgrounds: imgurl,
-      greetingwords: mywords
-    })
+    
   },
   musicclick() {
     wx.navigateTo({

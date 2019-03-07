@@ -21,7 +21,7 @@ Page({
     //每次要置空数据，否则数组会重复添加
     that.data.coverlist = []
     wx.showLoading({
-      title: '一大波贺卡来袭，请耐心等待...',
+      title: '努力加载中...',
     })
 
     wx.request({
