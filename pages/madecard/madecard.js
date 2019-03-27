@@ -139,6 +139,9 @@ Page({
   onMyEvent: function(e) {
     var that = this;
     var content = e.detail;
+    if(content==null||content==''){
+      content = that.data.greetingwords
+    }
     console.log('确定111', content)
     that.setData({
       isHidden: true,

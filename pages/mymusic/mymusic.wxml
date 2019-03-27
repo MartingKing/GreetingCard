@@ -1,6 +1,6 @@
 <!--pages/mymusic/mymusic.wxml-->
 <view bindtap='gotolastpage' wx:for='{{musicData}}' wx:key='index' wx:for-item='musicitem' data-musicdata='{{musicitem}}'>
-  <view class='wordscontainer'>
+  <view class='wordscontainer'> 
     <view class='music-layout'>
       <view class='musicinfo'>
         <image class='music-icon' src='../../image/icon_music.png'></image>

@@ -106,7 +106,7 @@ page {
   position: absolute;
   margin-top: 10%;
   align-items: flex-end;
-  margin-left: 14%;
+  margin-left: 30%;
   z-index: 4;
 }
 

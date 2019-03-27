@@ -1,4 +1,4 @@
-<!--pages/scancard/scancard.wxml-->
+<!--pages/scancard/scancard.wxml shareData.shareDate-->
 <view class='scancontainer' style='background-image: url("{{shareData.imgUrl}}");background-size:100% 100%;'>
 
   <view class="converstyle"> 

@@ -82,6 +82,33 @@ App({
           })
       }
     })
+
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log(res.hasUpdate)
+    })
+
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '检测到新版本，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+
+    updateManager.onUpdateFailed(function () {
+      // 新版本下载失败
+      wx.showModal({
+        title: '温馨提示',
+        content: '打开新版本遇到故障，请手动删除小程序再打开',
+      })
+    })
   },
   globalData: {
     userInfo: null,
