@@ -2,30 +2,17 @@
 <view class="swipe-card-container">
   <view class="placeholder-0"></view>
   <view class="placeholder-1"></view>
-  <view class="placeholder-2"></view> 
+  <view class="placeholder-2"></view>
   <mp-swipe-card bind:click="handleClickCard" pushList="{{coverlist}}" bind:swipeout="handleSwipeOut" generic:mp-swipe-card-item="card-item">
-  
+
   </mp-swipe-card>
 </view>
 
+
 <view class='home-bottom-layout'>
-  <view bindtap='comment'>
-    <button plain='true' style='border:none;' class='sharebtn'>
-      <image src='../../image/icon_comment.png' mode='widthFix'></image>
-    </button>
-  </view>
-  <view style='display: flex;flex-direction: column;'>
-    <image wx:if="{{collected}}" class='bottom-image-center' src='../../image/icon_like_gray.png' bindtap='like'></image>
-    <image wx:else class='bottom-image-center' src='../../image/icon_like.png' bindtap='like'></image>
-  </view>
-  <view>
-    <button plain='true' open-type="share" style='border:none;' class='sharebtn'>
-      <image src='../../image/icon_share.png' mode='widthFix'></image>
-    </button>
-  </view>
+
+  <text>
+  我需要三件东西：爱情友谊和图书。然而这三者之间何其相通！炽热的爱情可以充实图书的内容，图书又是人们最忠实的朋友。 —— 蒙田
+  </text>
 
 </view>
-
- <!-- 引入图片预加载组件 -->
-<!-- <import src="../img-loader/img-loader.wxml"/>
-<template is="img-loader" data="{{ imgLoadList }}"></template> -->

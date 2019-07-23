@@ -1,0 +1,2 @@
+<!--pages/commonweb/commonweb.wxml-->
+<web-view src="{{url}}"></web-view>

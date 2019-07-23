@@ -53,37 +53,37 @@ Page({
     })
     that.newUserGuide()
   },
-  comment: function() {
-    wx.getUserInfo({
-      success: function(res) {
-        //此处为获取微信信息后的业务方法
-        wx.navigateTo({
-          url: '../comment/comment?coverid=' + coverid
-        })
-      },
-      fail: function() {
-        //获取用户信息失败后。请跳转授权页面
-        wx.showModal({
-          title: '提示',
-          content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
-          success: function(res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../cardme/cardme',
-              })
-            }
-          }
-        })
-      }
-    })
-  },
+  // comment: function() {
+  //   wx.getUserInfo({
+  //     success: function(res) {
+  //       //此处为获取微信信息后的业务方法
+  //       wx.navigateTo({
+  //         url: '../comment/comment?coverid=' + coverid
+  //       })
+  //     },
+  //     fail: function() {
+  //       //获取用户信息失败后。请跳转授权页面
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
+  //         success: function(res) {
+  //           if (res.confirm) {
+  //             wx.switchTab({
+  //               url: '../cardme/cardme',
+  //             })
+  //           }
+  //         }
+  //       })
+  //     }
+  //   })
+  // },
 
-  like: function() {
-    var postCollected = this.data.collected
-    this.setData({
-      collected: !postCollected
-    })
-  },
+  // like: function() {
+  //   var postCollected = this.data.collected
+  //   this.setData({
+  //     collected: !postCollected
+  //   })
+  // },
 
   handleSwipeOut(...args) {
     var index = args[0].detail.list.length

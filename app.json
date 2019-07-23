@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/cardhome/cardhome",
+    "pages/festival/festival",
     "pages/cardme/cardme",
     "pages/madecard/madecard",
     "pages/comment/comment",
@@ -9,7 +10,8 @@
     "pages/scancard/scancard",
     "pages/userguide/userguide",
     "pages/aboutus/aboutus",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/commonweb/commonweb"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,6 +30,12 @@
         "iconPath": "image/icon_card_nor.png",
         "selectedIconPath": "image/icon_card_pres.png",
         "text": "贺卡"
+      },
+      {
+        "pagePath": "pages/festival/festival",
+        "iconPath": "image/icon_festival_nor.png",
+        "selectedIconPath": "image/icon_festival_pres.png",
+        "text": "节日由来"
       },
       {
         "pagePath": "pages/cardme/cardme",
